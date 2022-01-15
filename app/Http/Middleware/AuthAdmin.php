@@ -17,10 +17,9 @@ class AuthAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->is_amdin == 1)
+        if(Auth::check() && Auth::user()->is_admin == 1)
             return $next($request);
-        else
-            return redirect(route('login'));
-        return $next($request);
+        return dd('haveNoAcc');
+
     }
 }

@@ -33,7 +33,8 @@ Route::get('/details/{id}' , Details::class )->name('product.details');
 Route::get('/category/{id}' , Category::class )->name('category');
 
 
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+// Route::group([ 'middleware'=> ['auth:sanctum', 'verified' ,'authAdmin']  , 'prefix'=>'admin'] , function()
+// {
+//     Route::get('/dashboard' , function(){return dd("Admin dashboard");});
+//     Route::get('/categories');
+// });

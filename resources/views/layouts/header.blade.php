@@ -30,9 +30,7 @@
                                         href="{{ route('register') }}">Register</a></li>
                             @else
                                 <li class="menu-item lang-menu menu-item-has-children parent">
-                                    <a title="English" href="#"><span class="img label-before"><img
-                                                src="{{ asset('assets/images/lang-en.png') }}"
-                                                alt="lang-en"></span>{{ Auth::user()->name }}<i
+                                    <a title="English" href="#"><span class="img label-before"></span>{{ Auth::user()->name }} @if(Auth::user()->is_admin)(Admin)@endif<i
                                             class="fa fa-angle-down" aria-hidden="true"></i></a>
                                     <ul class="submenu lang">
                                         <li class="menu-item">

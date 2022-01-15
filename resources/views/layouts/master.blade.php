@@ -25,7 +25,7 @@
 
 <body class="home-page home-01 ">
     @include('layouts.header')
-       @yield('content')
+    @yield('content')
     @include('layouts.footer')
     @livewireScripts
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
