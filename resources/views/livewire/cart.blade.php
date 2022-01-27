@@ -35,7 +35,7 @@
                             $flag = 0; //There is at least 1 item
                         @endphp
 
-                        @forelse (Cart::content() as $i)
+                        @forelse ( Cart::instance('cart')->content() as $i)
                             @php
                                 $flag = 1;
                             @endphp
@@ -86,14 +86,14 @@
                         <div class="order-summary">
                             <h4 class="title-box">Order Summary</h4>
                             <p class="summary-info"><span class="Subtotals">Subtotal</span><b
-                                    class="index">${{ Cart::subtotal() }}</b></p>
+                                    class="index">${{  Cart::instance('cart')->subtotal() }}</b></p>
                             <p class="summary-info"><span class="Tax">Tax</span><b
-                                    class="index">${{ Cart::Tax() }}</b></p>
+                                    class="index">${{  Cart::instance('cart')->Tax() }}</b></p>
                             <p class="summary-info"><span class="Total">Shipping</span><b
                                     class="index">Free
                                     Shipping</b></p>
                             <p class="summary-info total-info "><span class="title">Total</span><b
-                                    class="index">${{ Cart::total() }}</b></p>
+                                    class="index">${{  Cart::instance('cart')->total() }}</b></p>
                         </div>
                         <div class="checkout-info">
                             <label class="checkbox-field">

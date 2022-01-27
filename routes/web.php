@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Livewire\About;
+use App\Http\Livewire\Admin\Dashboard;
 use App\Http\Livewire\Cart;
 use App\Http\Livewire\Category;
 use App\Http\Livewire\Checkout;
@@ -30,7 +31,9 @@ Route::get('/about-us' , About::class )->name('about');
 Route::get('/checout' , Checkout::class )->name('checkout');
 Route::get('/contact' , Contact::class )->name('contact');
 Route::get('/details/{id}' , Details::class )->name('product.details');
+Route::get('/details/details/{smth?}/{id}' , Details::class );
 Route::get('/category/{id}' , Category::class )->name('category');
+
 
 
 // Route::group([ 'middleware'=> ['auth:sanctum', 'verified' ,'authAdmin']  , 'prefix'=>'admin'] , function()

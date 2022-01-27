@@ -29,10 +29,17 @@
                                 <li class="menu-item"><a title="Login"
                                         href="{{ route('register') }}">Register</a></li>
                             @else
+
                                 <li class="menu-item lang-menu menu-item-has-children parent">
-                                    <a title="English" href="#"><span class="img label-before"></span>{{ Auth::user()->name }} @if(Auth::user()->is_admin)(Admin)@endif<i
-                                            class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                    <a title="English" href="#"><span
+                                            class="img label-before"></span>{{ Auth::user()->name }}
+                                        @if (Auth::user()->is_admin)(Admin)@endif<i class="fa fa-angle-down" aria-hidden="true"></i></a>
                                     <ul class="submenu lang">
+                                        @if (Auth::user()->is_admin)
+                                            <li class="menu-item">
+                                                <a href="{{ route('admin.dashboard') }}">Dashboard</a>
+                                            </li>
+                                        @endif
                                         <li class="menu-item">
                                             <!-- Authentication -->
                                             <form method="POST" action="{{ route('logout') }}"
@@ -44,6 +51,7 @@
                                                 </x-jet-dropdown-link>
                                             </form>
                                         </li>
+
                                     </ul>
                                 </li>
 
@@ -123,7 +131,8 @@
                             <a href="#" class="link-direction">
                                 <i class="fa fa-heart" aria-hidden="true"></i>
                                 <div class="left-info">
-                                    <span class="index">0 item</span>
+                                    <span class="index">{{ Cart::instance('wishlist')->count() }}
+                                        item</span>
                                     <span class="title">Wishlist</span>
                                 </div>
                             </a>
@@ -133,7 +142,7 @@
                                 <i class="fa fa-shopping-basket" aria-hidden="true"></i>
                                 <div class="left-info">
                                     <span class="index">
-                                        {{Cart::count()}}
+                                        {{ Cart::instance('cart')->count() }}
                                     </span>
                                     <span class="title">CART</span>
                                 </div>

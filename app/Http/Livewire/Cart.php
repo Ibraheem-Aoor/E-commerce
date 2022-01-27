@@ -6,19 +6,28 @@ use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart as C;
 use Gloudemans\Shoppingcart\Contracts\Buyable;
 use Gloudemans\Shoppingcart\Facades\Cart as FacadesCart;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Cart extends Component
 {
 
+// registering listeners
     public $listeners = ['increaseQty'  ,'reduceQty' , 'destroyCart' , 'deleteItem'];
+
+    public function mount($id = null)
+    {
+        // redirect if user isn't authenticated
+        if(!Auth::check())
+            return redirect(route('login'));
+    }
 
     public function render()
     {
         return view('livewire.cart')->extends('layouts.master')->section('content');
     }
 
-
+// Deleting item from the card
     public function deleteItem($rowId)
     {
         C::remove($rowId);
@@ -26,7 +35,7 @@ class Cart extends Component
     }
 
 
-    /* Product Quantity manipulating */
+    // Product Quantity manipulating
     public function increaseQty($rowId)
     {
         $product = C::get($rowId);// returnning product object
@@ -45,6 +54,8 @@ class Cart extends Component
         }
         C::update($rowId , $newQty);
     }
+
+    
 
     // Clearing the cart
     public  function destroyCart()

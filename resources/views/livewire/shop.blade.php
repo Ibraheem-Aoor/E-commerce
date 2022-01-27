@@ -17,7 +17,7 @@
 
                     <div class="banner-shop">
                         <a href="#" class="banner-link">
-                            <figure><img src="{{asset('assets/images/shop-banner.jpg')}}" alt=""></figure>
+                            <figure><img src="{{ asset('assets/images/shop-banner.jpg') }}" alt=""></figure>
                         </a>
                     </div>
 
@@ -47,17 +47,42 @@
 
                             <div class="change-display-mode">
                                 <a href="#" class="grid-mode display-mode active"><i class="fa fa-th"></i>Grid</a>
-                                <a href="list.html" class="list-mode display-mode"><i
-                                        class="fa fa-th-list"></i>List</a>
+
                             </div>
 
                         </div>
 
                     </div>
                     <!--end wrap shop control-->
+                    <style>
+                        .product-wish {
+                            position: absolute;
+                            top: 10%;
+                            left: 0;
+                            z-index: 99;
+                            right: 30px;
+                            text-align: right;
+                            padding-top: 0;
+                        }
+
+                        .roduct-wish .fa {
+                            color: #cbcbcb;
+                            font-size: 32px;
+                        }
+
+                        .product-wish .fa:hover {
+                            color: #ff7007 !important;
+                        }
+
+
+                    </style>
 
                     <div class="row">
-
+                        @php
+                            $wishItems = Cart::instance('wishlist')
+                                ->content()
+                                ->pluck('id');
+                        @endphp
                         @forelse ($products as $i)
                             <ul class="product-list grid-products equal-container">
                                 <li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
@@ -77,6 +102,15 @@
                                             <a href="#" class="btn add-to-cart"
                                                 wire:click.prevent="storeItem( {{ $i->id }} , '{{ $i->name }}' , {{ $i->sale_price }} )">Add
                                                 To Cart</a>
+                                            <div class="product-wish">
+                                                @if ($wishItems->contains($i->id))
+                                                    <a href="#"><i class="fa fa-heart fill-heart" style="color:#ff7007"></i></a>
+                                                @else
+                                                    <a href="#"
+                                                        wire:click.prevent="addTowishlist(  {{ $i->id }} , '{{ $i->name }}' , {{ $i->sale_price }} )"><i
+                                                            class="fa fa-heart" ></i></a>
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
                                 </li>
@@ -91,7 +125,7 @@
                     </div>
 
 
-
+                    {{-- custom pagination --}}
                     <div class="wrap-pagination-info">
                         {{ $products->links('livewire.user.pagination.custom') }}
                     </div>
@@ -102,20 +136,52 @@
                     <div class="widget mercado-widget categories-widget">
                         <h2 class="widget-title">All Categories</h2>
                         <div class="widget-content">
-                            <ul class="list-category list-limited list-style vertical-list list-limited" data-show="6">
-                                @forelse ($categories as $c)
-                                    <li class="category-item">
-                                        <a href="{{route('category' , $c->id)}}" class="cate-link">{{ $c->name }}</a>
-                                    </li>
-                                @empty
-                                    <li class="category-item">
-                                        <a href="#" class="cate-link">No Categoies Avilable</a>
-                                    </li>
-                                @endforelse
-                                <li class="list-item"><a
-                                    data-label='Show less<i class="fa fa-angle-up" aria-hidden="true"></i>'
-                                    class="btn-control control-show-more" href="#">Show more<i
-                                        class="fa fa-angle-down" aria-hidden="true"></i></a></li>
+                            <ul class="list-category">
+                                <li class="category-item has-child-cate">
+                                    <a href="#" class="cate-link">Fashion & Accessories</a>
+                                    <span class="toggle-control">+</span>
+                                    <ul class="sub-cate">
+                                        <li class="category-item"><a href="#" class="cate-link">Batteries (22)</a>
+                                        </li>
+                                        <li class="category-item"><a href="#" class="cate-link">Headsets (16)</a>
+                                        </li>
+                                        <li class="category-item"><a href="#" class="cate-link">Screen (28)</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="category-item has-child-cate">
+                                    <a href="#" class="cate-link">Furnitures & Home Decors</a>
+                                    <span class="toggle-control">+</span>
+                                    <ul class="sub-cate">
+                                        <li class="category-item"><a href="#" class="cate-link">Batteries (22)</a>
+                                        </li>
+                                        <li class="category-item"><a href="#" class="cate-link">Headsets (16)</a>
+                                        </li>
+                                        <li class="category-item"><a href="#" class="cate-link">Screen (28)</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="category-item has-child-cate">
+                                    <a href="#" class="cate-link">Digital & Electronics</a>
+                                    <span class="toggle-control">+</span>
+                                    <ul class="sub-cate">
+                                        <li class="category-item"><a href="#" class="cate-link">Batteries (22)</a>
+                                        </li>
+                                        <li class="category-item"><a href="#" class="cate-link">Headsets (16)</a>
+                                        </li>
+                                        <li class="category-item"><a href="#" class="cate-link">Screen (28)</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="category-item">
+                                    <a href="#" class="cate-link">Tools & Equipments</a>
+                                </li>
+                                <li class="category-item">
+                                    <a href="#" class="cate-link">Kid’s Toys</a>
+                                </li>
+                                <li class="category-item">
+                                    <a href="#" class="cate-link">Organics & Spa</a>
+                                </li>
                             </ul>
                         </div>
                     </div><!-- Categories widget-->
@@ -130,13 +196,6 @@
                                 <li class="list-item"><a class="filter-link " href="#">Printer & Ink</a></li>
                                 <li class="list-item"><a class="filter-link " href="#">CPUs & Prosecsors</a></li>
                                 <li class="list-item"><a class="filter-link " href="#">Sound & Speaker</a></li>
-                                <li class="list-item"><a class="filter-link " href="#">Sound & Speaker</a></li>
-                                <li class="list-item"><a class="filter-link " href="#">Sound & Speaker</a></li>
-                                <li class="list-item"><a class="filter-link " href="#">Sound & Speaker</a></li>
-                                <li class="list-item"><a class="filter-link " href="#">Sound & Speaker</a></li>
-                                <li class="list-item"><a class="filter-link " href="#">Sound & Speaker</a></li>
-                                <li class="list-item"><a class="filter-link " href="#">Sound & Speaker</a></li>
-                                <li class="list-item"><a class="filter-link " href="#">Sound & Speaker</a></li>
                                 <li class="list-item"><a class="filter-link " href="#">Shop Smartphone &
                                         Tablets</a></li>
                                 <li class="list-item default-hiden"><a class="filter-link " href="#">Printer & Ink</a>
@@ -144,51 +203,41 @@
                                 <li class="list-item default-hiden"><a class="filter-link " href="#">CPUs &
                                         Prosecsors</a></li>
                                 <li class="list-item default-hiden"><a class="filter-link " href="#">Sound &
-                                        Speaker</a>
-                                </li>
+                                        Speaker</a></li>
                                 <li class="list-item default-hiden"><a class="filter-link " href="#">Shop Smartphone &
                                         Tablets</a></li>
                                 <li class="list-item"><a
                                         data-label='Show less<i class="fa fa-angle-up" aria-hidden="true"></i>'
-                                        class="btn-control control-show-more" href="#">Show more<i
-                                            class="fa fa-angle-down" aria-hidden="true"></i></a></li>
+                                        class="btn-control control-show-more">Show more<i class="fa fa-angle-down"
+                                            aria-hidden="true"></i></a></li>
                             </ul>
                         </div>
                     </div><!-- brand widget-->
 
                     <div class="widget mercado-widget filter-widget price-filter">
-                        <h2 class="widget-title">Price</h2>
-                        <div class="widget-content">
-                            <div id="slider-range"></div>
-                            <p>
-                                <label for="amount">Price:</label>
-                                <input type="text" id="amount" readonly>
-                                <button class="filter-submit">Filter</button>
-                            </p>
-                        </div>
-                    </div><!-- Price-->
+                        <h2 class="widget-title">Price <span class="text-info">${{ $minPrice }} -
+                                ${{ $maxPrice }}</span></h2>
+                        <div class="widget-content" style="padding:10px 5px 40px 5px;">
+                            <div id="slider" class="" wire:ignore></div>
+                        </div><!-- Price-->
+                    </div>
 
                     <div class="widget mercado-widget filter-widget">
                         <h2 class="widget-title">Color</h2>
                         <div class="widget-content">
                             <ul class="list-style vertical-list has-count-index">
                                 <li class="list-item"><a class="filter-link " href="#">Red
-                                        <span>(217)</span></a>
-                                </li>
+                                        <span>(217)</span></a></li>
                                 <li class="list-item"><a class="filter-link " href="#">Yellow
                                         <span>(179)</span></a></li>
                                 <li class="list-item"><a class="filter-link " href="#">Black
-                                        <span>(79)</span></a>
-                                </li>
+                                        <span>(79)</span></a></li>
                                 <li class="list-item"><a class="filter-link " href="#">Blue
-                                        <span>(283)</span></a>
-                                </li>
+                                        <span>(283)</span></a></li>
                                 <li class="list-item"><a class="filter-link " href="#">Grey
-                                        <span>(116)</span></a>
-                                </li>
+                                        <span>(116)</span></a></li>
                                 <li class="list-item"><a class="filter-link " href="#">Pink
-                                        <span>(29)</span></a>
-                                </li>
+                                        <span>(29)</span></a></li>
                             </ul>
                         </div>
                     </div><!-- Color -->
@@ -203,7 +252,7 @@
                                 <li class="list-item"><a class="filter-link " href="#">xl</a></li>
                             </ul>
                             <div class="widget-banner">
-                                <figure><img src="{{asset('assets/images/size-banner-widget.jpg')}}" width="270" height="331" alt="">
+                                <figure><img src="assets/images/size-banner-widget.jpg" width="270" height="331" alt="">
                                 </figure>
                             </div>
                         </div>
@@ -300,4 +349,27 @@
 
     </main>
     <!--main area-->
+
+    @push('scripts')
+        <script>
+            var slider = document.getElementById('slider');
+            nouislider.create(slider, {
+                start: [1, 2500],
+
+                connect: true,
+                range: {
+                    'min': 1,
+                    'max': 2500
+                },
+                pips: {
+                    mode: 'steps',
+                    stepped: true,
+                    density: 4,
+                }
+            });
+        </script>
+    @endpush
+
+
+
 </div>

@@ -17,4 +17,6 @@ class Product extends Model
         'quantity' , 'image' ,'images' ,
         'category_id' , '' ,'' ,
     ];
+
+    protected $hidden = ['short_description' , 'slug' , 'featured' , 'category_id'];
 }

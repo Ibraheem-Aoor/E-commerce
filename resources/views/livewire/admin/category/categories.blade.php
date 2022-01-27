@@ -31,8 +31,8 @@
                         {{ Session::get('deleted') }}
                     </div>
                 @endif
-                <div class="panel-body">
-                    <table class="table table-stripped">
+                <div class="panel-body table-responsive">
+                    <table class="table table-striped  table-hover table-condensed">
                         <thead>
                             <tr>
                                 <th>#</th>

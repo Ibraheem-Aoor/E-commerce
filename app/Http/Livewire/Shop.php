@@ -8,19 +8,23 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
-use Illuminate\Database\Eloquent\Collection;
 
 class Shop extends Component
 {
+// Traits
     use WithPagination;
-    /* Start Attributes */
-    public $sortMode , $pagesize;
-    /* Start Attributes */
 
+// Attributes
+    public $sortMode , $pagesize;
+    public $maxPrice , $minPrice;
+
+// livewire Constructor
     public function mount($category_id = null)
     {
         $this->sortMode = 'default';
         $this->pagesize = 12;
+        $this->minPrice = 1;
+        $this->maxPrice = 2500;
     }
 
     public function render()
@@ -31,16 +35,17 @@ class Shop extends Component
     }
 
 
-    // Store item to user's ShoppingCart
+// Store item to user's ShoppingCart
     public  function storeItem($productId , $productName, $ProductPrice)
     {
         if(!Auth::check())
             return redirect(route('login'));
-        Cart::add($productId, $productName, 1, $ProductPrice)->associate(Product::class); //default Quntiaty is 1;
-        session()->flash('ProductAddedToCart' , 'Product Added Successfully');
+        $data  = Cart::instance('cart')->add($productId, $productName, 1, $ProductPrice)->associate('App\Models\Product');
         return redirect(route('cart'));
     }
 
+
+// Sort items
     public  function sortItems()
     {
         switch($this->sortMode)
@@ -50,5 +55,13 @@ class Shop extends Component
             case 'price-desc': return Product::orderBy('sale_price' , 'desc')->paginate($this->pagesize); break;
             default: return Product::paginate($this->pagesize);
         }
+    }
+
+// Add To Wishlist
+    public function addTowishlist($productId , $productName, $ProductPrice)
+    {
+        if(!Auth::check())
+            return redirect(route('login'));
+        $datat = Cart::instance('wishlist')->add($productId,$productName,1,$ProductPrice)->associate('App Models\Product');
     }
 }

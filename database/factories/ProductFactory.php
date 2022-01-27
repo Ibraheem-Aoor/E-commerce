@@ -21,8 +21,11 @@ class ProductFactory extends Factory
             'sale_price' => $this->faker->numberBetween(100,300),
             'SKU' => $this->faker->numberBetween(100,300),
             'quantity' => $this->faker->numberBetween(50,300),
+            // 'rate' => $this->faker->numberBetween(1,5),
             'image' => 'digital_'.$this->faker->numberBetween(1,22).'.jpg',
-            'category_id' => $this->faker->numberBetween(1,10),
+            'category_id' => $this->faker->numberBetween(1,800),
+            'onsale' => $this->faker->boolean(),
+
         ];
     }
 }
