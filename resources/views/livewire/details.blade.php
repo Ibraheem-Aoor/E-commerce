@@ -145,7 +145,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                @livewire('reviews' , ['id' => $product->id])
+                                {{-- @livewire('reviews' , ['id' => $product->id]) --}}
                             </div>
                         </div>
                     </div>

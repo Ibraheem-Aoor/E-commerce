@@ -9,30 +9,28 @@
 
             <div class="wrap-breadcrumb">
                 <ul>
-                    <li class="item-link"><a href="#" class="link">home</a></li>
+                    <li class="item-link"><a href="/" class="link">home</a></li>
                     <li class="item-link"><span>login</span></li>
                 </ul>
             </div>
             <div class=" main-content-area">
 
                 <div class="wrap-iten-in-cart">
-                    @if (session()->has('ProductAddedToCart'))
+                    @if (session()->has('success'))
                         <div class="alert alert-success">
-                            {{ session()->get('ProductAddedToCart') }}
+                            {{ session()->get('success') }}
                         </div>
-                    @elseif(session()->has('destroied'))
+                    @elseif(session()->has('error'))
                         <div class="alert alert-warning">
-                            {{ session()->get('destroied') }}
-                        </div>
-                    @elseif(session()->has('ItemRemoved'))
-                        <div class="alert alert-warning">
-                            {{ session()->get('ItemRemoved') }}
+                            {{ session()->get('error') }}
                         </div>
                     @endif
+                    @if(Cart::instance('cart')->count() > 0)
                     <h3 class="box-title">Products Name</h3>
+                    @endif
                     <ul class="products-cart">
                         @php
-                            $flag = 0; //There is at least 1 item
+                            $flag = 0; //There is No Items
                         @endphp
 
                         @forelse ( Cart::instance('cart')->content() as $i)
@@ -65,16 +63,18 @@
                                     <p class="price">${{ $i->subtotal }}</p>
                                 </div>
                                 <div class="delete">
-                                    <a href="#" class="btn btn-delete" title="" wire:click.prevent="$emit('deleteItem' , '{{$i->rowId}}')">
+                                    <a href="#" class="btn btn-delete" title=""
+                                        wire:click.prevent="$emit('deleteItem' , '{{ $i->rowId }}')">
                                         <span>Delete from your cart</span>
                                         <i class="fa fa-times-circle" aria-hidden="true"></i>
                                     </a>
                                 </div>
                             </li>
                         @empty
-                            <li class="pr-cart-item">
-                                <h3>Cart Is Empty</h3>
-                            </li>
+                            <div class="text-center">
+                                <h4>Your Cart Is Empty</h4>
+                                <a href="{{route('shop')}}" class="btn btn-success">Shop Now</a>
+                            </div>
                         @endforelse
 
 
@@ -85,28 +85,53 @@
                     <div class="summary">
                         <div class="order-summary">
                             <h4 class="title-box">Order Summary</h4>
-                            <p class="summary-info"><span class="Subtotals">Subtotal</span><b
-                                    class="index">${{  Cart::instance('cart')->subtotal() }}</b></p>
-                            <p class="summary-info"><span class="Tax">Tax</span><b
-                                    class="index">${{  Cart::instance('cart')->Tax() }}</b></p>
-                            <p class="summary-info"><span class="Total">Shipping</span><b
-                                    class="index">Free
-                                    Shipping</b></p>
-                            <p class="summary-info total-info "><span class="title">Total</span><b
-                                    class="index">${{  Cart::instance('cart')->total() }}</b></p>
+                            @if ($couponFlag == 1)
+                                <p class="summary-info"><span class="Subtotals">Subtotal</span><b
+                                        class="index">${{ Cart::instance('cart')->subtotal() }}</b></p>
+                                <p class="summary-info"><span class="Subtotals">Subtotal After Discount</span><b
+                                        class="index">${{ $subtotalAfterDiscount }}</b></p>
+                                <p class="summary-info"><span class="Tax">Tax After Discount</span><b
+                                        class="index">${{ $taxAfterDiscount }}</b></p>
+                                <p class="summary-info"><span class="Total">Shipping</span><b
+                                        class="index">Free
+                                        Shipping</b></p>
+                                <p class="summary-info total-info "><span class="title">Total After Discount</span><b
+                                        class="index">${{ $totalAfterDiscount }}</b></p>
+                            @else
+                                <p class="summary-info"><span class="Subtotals">Subtotal</span><b
+                                        class="index">${{ Cart::instance('cart')->subtotal() }}</b></p>
+                                <p class="summary-info"><span class="Tax">Tax</span><b
+                                        class="index">${{ Cart::instance('cart')->Tax() }}</b></p>
+                                <p class="summary-info"><span class="Total">Shipping</span><b
+                                        class="index">Free
+                                        Shipping</b></p>
+                                <p class="summary-info total-info "><span class="title">Total</span><b
+                                        class="index">${{ Cart::instance('cart')->total() }}</b></p>
+                            @endif
                         </div>
                         <div class="checkout-info">
                             <label class="checkbox-field">
                                 <input class="frm-input " name="have-code" id="have-code" value=""
-                                    type="checkbox"><span>I
+                                    wire:model="haveCoupon" type="checkbox"><span>I
                                     have promo code</span>
+
                             </label>
-                            <a class="btn btn-checkout" href="checkout.html">Check out</a>
+                            @if ($haveCoupon)
+                                <form wire:submit.prevent="applyCode()">
+                                    <div>
+                                        <label>Enter Coupon Code:</label>
+                                        <input type="text" class="form-control" wire:model="couponCode"> <br>
+                                        <button type="submit" class="btn-sm btn-info">Apply Code</button>
+                                    </div>
+                                </form>
+                            @endif
+                            <a class="btn btn-checkout" wire:click.prevent="checkout()">Check out</a>
                             <a class="link-to-shop" href="/shop">Continue Shopping<i class="fa fa-arrow-circle-right"
                                     aria-hidden="true"></i></a>
                         </div>
                         <div class="update-clear">
-                            <a class="btn btn-clear" href="#" wire:click.prevent="$emit('destroyCart')">Clear Shopping Cart</a>
+                            <a class="btn btn-clear" href="#" wire:click.prevent="$emit('destroyCart')">Clear Shopping
+                                Cart</a>
                             <a class="btn btn-update" href="#">Update Shopping Cart</a>
                         </div>
                     </div>

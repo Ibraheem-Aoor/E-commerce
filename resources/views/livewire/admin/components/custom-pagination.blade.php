@@ -26,7 +26,7 @@
                                     href="javascript:;">{{ $page }}</a></li>
                         @else
                             <li class="page-item "><a class="page-link"
-                                    href="/admin/user-managment?page={{ $page }}">{{ $page }}</a></li>
+                                    href="/admin/{{$targetPage}}?page={{ $page }}">{{ $page }}</a></li>
                         @endif
                     @endforeach
                 @endif

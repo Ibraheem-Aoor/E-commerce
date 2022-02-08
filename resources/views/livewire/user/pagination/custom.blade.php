@@ -1,45 +1,56 @@
-@if ($paginator->hasPages())
-    <ul class="page-numbers">
-        {{-- prev --}}
-        @if ($paginator->onFirstPage())
-            <li class="page-item"><a class="page-number-item " style="cursor: not-allowed"><i
-                        class="fa fa-chevron-left"></i></a></li>
-        @else
-            <li class="page-item"><a class="page-number-item " wire:click="previousPage"><i
-                        class="fa fa-chevron-left"></i></a></li>
-        @endif
-        @php
-            $i = 1;
-        @endphp
-        {{-- pagesBetween --}}
-        @foreach ($elements as $element)
-            @if (is_array($element))
-                @foreach ($element as $page => $url)
-                    @if ($page == $paginator->currentPage())
-                        <li class="page-item" style="background-color: red;color:white">
-                            <a class="page-number-item " href="/shop/?page={{ $page }}">{{ $page }}</a>
-                        </li>
-                    @else
-                        <li><a class="page-number-item " href="/shop/?page={{ $page }}">{{ $page }}</a>
-                        </li>
-                    @endif
-                @endforeach
+<nav aria-label="Page navigation example">
+    @if ($paginator->hasPages())
+        <ul class="pagination">
+            {{-- Prev --}}
+            @if ($paginator->onFirstPage())
+                <li class="page-item" tyle="cursor:not-allowed">
+                    <a class="page-link" href="javascript:;" aria-label="Previous">
+                        <i class="fa fa-angle-left"></i>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+            @else
+                <li class="page-item" tyle="cursor: ىnot-allowed">
+                    <a class="page-link" href="javascript:;" aria-label="Previous" wire:click="previousPage">
+                        <i class="fa fa-angle-left"></i>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
             @endif
-            </li>
-        @endforeach
-        {{-- pagesBetween --}}
+            {{-- PagesBetween --}}
+            @foreach ($elements as $element)
+                @if (is_array($element))
+                    @foreach ($element as $page => $url)
+                        @if ($page == $paginator->currentPage())
+                            <li class="page-item active"><a class="page-link"
+                                    href="javascript:;">{{ $page }}</a></li>
+                        @else
+                            <li class="page-item "><a class="page-link"
+                                    href="/{{$targetPage}}?page={{ $page }}">{{ $page }}</a></li>
+                        @endif
+                    @endforeach
+                @endif
+            @endforeach
 
 
+            @if ($paginator->hasMorePages())
+                <li class="page-item">
+                    <a class="page-link" href="javascript:;" aria-label="Next" wire:click="nextPage">
+                        <i class="fa fa-angle-right"></i>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            @else
+                <li class="page-item">
+                    <a class="page-link" aria-label="Next" style="cursor: not-allowed;">
+                        <i class="fa fa-angle-right"></i>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            @endif
 
-        @if ($paginator->hasMorePages())
+        </ul>
+    @endif
+</nav>
 
-            {{-- Next --}}
-            <li class="page-item"><a wire:click="nextPage" class="page-number-item"><i
-                        class="fa fa-chevron-right"></i></a></li>
-        @else
-            <li class="page-item"><a class="page-number-item " style="cursor: not-allowed"><i
-                        class="fa fa-chevron-right" aria-hidden="true"></i>
-                        </a></li>
-        @endif
-    </ul>
-@endif
+{{-- --------------------------------------------------------------- --}}

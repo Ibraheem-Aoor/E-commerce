@@ -1,78 +1,84 @@
 <div>
-    <style>
-        nav svg {
-            height: 20px;
-        }
+    @section('page', 'Sales / Categories')
+    <div class="container-fluid py-4">
+        <div class="row">
+            <div class="col-xl-12  mb-4">
+                <div class="card">
+                    <div class="card-body px-0 pb-2">
+                        @if (Session::has('deleted'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <span class="alert-icon"><i class="ni ni-like-2"></i></span>
+                                <span class="alert-text">{{ Session::get('deleted') }}</span>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
+                        <div class="table-responsive">
+                            <table class="table align-items-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Category Name</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Slug</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Creation Date</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Actions</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            <a class="btn btn-info" href="{{route('admin.categories.add')}}" >
+                                                Add New
+                                            </a>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse ($categories as $category)
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex px-2 py-1">
+                                                    <div>
+                                                        <img src="{{ asset('assets/images/small-logos/logo-xd.svg') }}"
+                                                            class="avatar avatar-sm me-3">
+                                                    </div>
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm">{{ $category->name }}</h6>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                {{ $category->slug }}
+                                            </td>
+                                            <td>{{ $category->created_at }}</td>
+                                            <td>
+                                                <button class="btn btn-danger btn-sm " title="delete"
+                                                    wire:click="deleteCategory({{ $category->id }})">
+                                                    <i class="fa fa-trash fa-sm"></i>
+                                                </button>
 
-        nav .hidden {
-            display: block !important;
-        }
-
-    </style>
-    {{-- Modal area --}}
-
-
-
-
-    <div class="container" style="padding:30px 0;">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading col-md-12">
-                    All Categories
-                    <div class="col-md pull-right">
-                        <a href="{{ route('admin.categories.add') }}" class="btn-sm btn-success">Add New</a>
+                                                <button class="btn btn-success btn-sm " title="edit"
+                                                    wire:click="editCategory({{ $category->id }})">
+                                                    <i class="fa fa-edit fa-sm"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                    @endforelse
+                                </tbody>
+                            </table>
+                            {{ $categories->links('livewire.admin.components.custom-pagination', ['targetPage' => 'categories']) }}
+                        </div>
                     </div>
-                </div>
-                @if (Session::has('deleted'))
-                    <div class=" col-md-12 alert alert-warning" >
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        {{ Session::get('deleted') }}
-                    </div>
-                @endif
-                <div class="panel-body table-responsive">
-                    <table class="table table-striped  table-hover table-condensed">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Category Name</th>
-                                <th>Slug</th>
-                                <th colspan="2">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($categories as $category)
-                                <tr>
-                                    <td>{{ $i++ }}</td>
-                                    <td>{{ $category->name }}</td>
-                                    <td>{{ $category->slug }}</td>
-                                    <td>
-                                        <button class="btn-xs btn-danger"
-                                            wire:click="deleteCategory({{ $category->id }})"><i
-                                                class="fa fa-trash"></i></button>
-                                    </td>
-                                    <td>
-                                        <button class="btn-xs btn-info" wire:click="edit({{$category->id}})"><i class="fa fa-edit"></i></button>
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="3">No Categories Avilable</td>
-                                </tr>
-                            @endforelse
 
-                        </tbody>
-                    </table>
 
-                    {{ $categories->links() }}
                 </div>
             </div>
         </div>
     </div>
-
-
-
-
-
+</div>
 </div>

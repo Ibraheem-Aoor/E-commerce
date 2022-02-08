@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Product;
-use App\Models\Rates;
+use App\Models\Rate;
 use App\Models\Review;
 use Exception;
 use Livewire\Component;
@@ -36,7 +36,7 @@ class Details extends Component
             [ 'id' , '!='  , $this->product->id]
         ])->inRandomOrder()->limit(5)->get();
         $this->numOfReviews = Review::where('product_id' , $this->product->id)->count();
-        $this->setProductRate($id);
+        // $this->setProductRate($id);
     }
 
     public function render()
@@ -57,7 +57,7 @@ class Details extends Component
 // Calculate the product rate
     public function setProductRate($id)
     {
-        $allRates = Rates::where('product_id', $id)->get();
+        $allRates = Rate::where('product_id', $id)->get();
         $ratesCount  = $allRates->count(); //total
         $votesFor5 = $allRates->where('stars' , 5)->count();
         $votesFor4 = $allRates->where('stars' , 4)->count();

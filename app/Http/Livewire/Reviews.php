@@ -18,7 +18,7 @@ class Reviews extends Component
 
     public function render()
     {
-        $newRate = new Rates();
+        $newRate = new Rate();
         $newRate->product_id = $this->product->id;
         $newRate->stars = $this->rate ?? 1;
         $newRate->save();

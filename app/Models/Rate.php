@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Rates extends Model
+class Rate extends Model
 {
     /* Note:
     Algorithm used to calculate the rating of the product:

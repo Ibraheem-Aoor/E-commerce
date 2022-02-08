@@ -18,5 +18,6 @@ class Product extends Model
         'category_id' , '' ,'' ,
     ];
 
+
     protected $hidden = ['short_description' , 'slug' , 'featured' , 'category_id'];
 }

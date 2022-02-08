@@ -104,11 +104,11 @@
                                                 To Cart</a>
                                             <div class="product-wish">
                                                 @if ($wishItems->contains($i->id))
-                                                    <a href="#"><i class="fa fa-heart fill-heart" style="color:#ff7007"></i></a>
+                                                    <a wire:click.prevent="removeFromWishlist({{$i->id}})"><i class="fa fa-heart fill-heart" style="color:#ff7007"></i></a>
                                                 @else
-                                                    <a href="#"
+                                                    <a
                                                         wire:click.prevent="addTowishlist(  {{ $i->id }} , '{{ $i->name }}' , {{ $i->sale_price }} )"><i
-                                                            class="fa fa-heart" ></i></a>
+                                                            class="fa fa-heart" style="cursor: pointer"></i></a>
                                                 @endif
                                             </div>
                                         </div>
@@ -127,7 +127,7 @@
 
                     {{-- custom pagination --}}
                     <div class="wrap-pagination-info">
-                        {{ $products->links('livewire.user.pagination.custom') }}
+                        {{ $products->links('livewire.user.pagination.custom' , ['targetPage'=>'shop']) }}
                     </div>
                 </div>
                 <!--end main products area-->

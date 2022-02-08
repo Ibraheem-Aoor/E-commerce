@@ -1,9 +1,9 @@
 <div>
+    @section('page', 'Users')
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-xl-12  mb-4">
                 <div class="card">
-                    {{ $currentUserName }}
                     <div class="card-body px-0 pb-2">
                         @if (Session::has('deleted'))
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -56,7 +56,7 @@
                         @endforelse
                         </tbody>
                         </table>
-                        {{ $users->links('livewire.admin.components.custom-pagination') }}
+                        {{ $users->links('livewire.admin.components.custom-pagination' , ['targetPage' => 'user-managment']) }}
                     </div>
 
 

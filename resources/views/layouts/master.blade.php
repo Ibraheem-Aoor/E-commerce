@@ -16,7 +16,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/animate.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/font-awesome.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.min.css') }}">
-    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap-rtl.min.css') }}"> --}}
+    @if (app()->getLocale() == 'ar')
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap-rtl.min.css') }}">
+    @endif
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/chosen.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">

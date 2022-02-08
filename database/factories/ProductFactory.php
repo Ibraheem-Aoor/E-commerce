@@ -24,7 +24,7 @@ class ProductFactory extends Factory
             // 'rate' => $this->faker->numberBetween(1,5),
             'image' => 'digital_'.$this->faker->numberBetween(1,22).'.jpg',
             'category_id' => $this->faker->numberBetween(1,800),
-            'onsale' => $this->faker->boolean(),
+            // 'onsale' => $this->faker->boolean(),
 
         ];
     }

@@ -16,7 +16,7 @@
                         <ul>
                             <li class="menu-item">
                                 <a title="Hotline: (+123) 456 789" href="#"><span
-                                        class="icon label-before fa fa-mobile"></span>Hotline: (+123) 456 789</a>
+                                        class="icon label-before fa fa-mobile"></span>{{__('header.Mobile')}}: (+123) 456 789</a>
                             </li>
                         </ul>
                     </div>
@@ -24,12 +24,12 @@
                         <ul>
                             {{-- UnAuthenticated user --}}
                             @if (!Auth::check())
-                                <li class="menu-item"><a title="Login" href="{{ route('login') }}">Login</a>
+                                <li class="menu-item"><a title="Login"
+                                        href="{{ route('login') }}">{{ __('header.Login') }}</a>
                                 </li>
                                 <li class="menu-item"><a title="Login"
-                                        href="{{ route('register') }}">Register</a></li>
+                                        href="{{ route('register') }}">{{__('header.Register')}}</a></li>
                             @else
-
                                 <li class="menu-item lang-menu menu-item-has-children parent">
                                     <a title="English" href="#"><span
                                             class="img label-before"></span>{{ Auth::user()->name }}
@@ -39,18 +39,34 @@
                                             <li class="menu-item">
                                                 <a href="{{ route('admin.dashboard') }}">Dashboard</a>
                                             </li>
+                                            <li class="menu-item">
+                                                <!-- Authentication -->
+                                                <form method="POST" action="{{ route('logout') }}"
+                                                    class="img label-before">
+                                                    @csrf
+                                                    <x-jet-dropdown-link href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                    this.closest('form').submit();">
+                                                        {{ __('Log Out') }}
+                                                    </x-jet-dropdown-link>
+                                                </form>
+                                            </li>
+                                        @else
+                                            <li class="menu-item">
+                                                <a href="{{ route('user.orders') }}">{{__('header.orders')}}</a>
+                                            </li>
+
+                                            <li class="menu-item">
+                                                <!-- Authentication -->
+                                                <form method="POST" action="{{ route('logout') }}"
+                                                    class="img label-before">
+                                                    @csrf
+                                                    <x-jet-dropdown-link href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                    this.closest('form').submit();">
+                                                        {{ __('header.Log Out') }}
+                                                    </x-jet-dropdown-link>
+                                                </form>
+                                            </li>
                                         @endif
-                                        <li class="menu-item">
-                                            <!-- Authentication -->
-                                            <form method="POST" action="{{ route('logout') }}"
-                                                class="img label-before">
-                                                @csrf
-                                                <x-jet-dropdown-link href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                                    {{ __('Log Out') }}
-                                                </x-jet-dropdown-link>
-                                            </form>
-                                        </li>
 
                                     </ul>
                                 </li>
@@ -65,19 +81,7 @@
                                     <li class="menu-item"><a title="hungary" href="#"><span
                                                 class="img label-before"><img
                                                     src="{{ asset('assets/images/lang-hun.png') }}"
-                                                    alt="lang-hun"></span>Hungary</a></li>
-                                    <li class="menu-item"><a title="german" href="#"><span
-                                                class="img label-before"><img
-                                                    src="{{ asset('assets/images/lang-ger.png') }}"
-                                                    alt="lang-ger"></span>German</a></li>
-                                    <li class="menu-item"><a title="french" href="#"><span
-                                                class="img label-before"><img
-                                                    src="{{ asset('assets/images/lang-fra.png') }}"
-                                                    alt="lang-fre"></span>French</a></li>
-                                    <li class="menu-item"><a title="canada" href="#"><span
-                                                class="img label-before"><img
-                                                    src="{{ asset('assets/images/lang-can.png') }}"
-                                                    alt="lang-can"></span>Canada</a></li>
+                                                    alt="lang-hun"></span>Arabic</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -89,8 +93,9 @@
                 <div class="mid-section main-info-area">
 
                     <div class="wrap-logo-top left-section">
-                        <a href="/" class="link-to-home"><img src="{{ asset('assets/images/logo-top-1.png') }}"
-                                alt="mercado"></a>
+                        <a href="/" class="link-to-home">
+                            <h2>IbraheemDev</h2>
+                            </a>
                     </div>
 
                     <div class="wrap-search center-section">
@@ -101,7 +106,7 @@
                                         aria-hidden="true"></i></button>
                                 <div class="wrap-list-cate">
                                     <input type="hidden" name="product-cate" value="0" id="product-cate">
-                                    <a href="#" class="link-control">All Category</a>
+                                    <a href="#" class="link-control">{{__('header.AllCategory')}}</a>
                                     <ul class="list-cate">
                                         <li class="level-0">All Category</li>
                                         <li class="level-1">-Electronics</li>
@@ -128,12 +133,12 @@
 
                     <div class="wrap-icon right-section">
                         <div class="wrap-icon-section wishlist">
-                            <a href="#" class="link-direction">
+                            <a href="{{ route('wishlist') }}" class="link-direction">
                                 <i class="fa fa-heart" aria-hidden="true"></i>
                                 <div class="left-info">
                                     <span class="index">{{ Cart::instance('wishlist')->count() }}
                                         item</span>
-                                    <span class="title">Wishlist</span>
+                                    <span class="title">{{__('header.Wishlist')}}</span>
                                 </div>
                             </a>
                         </div>
@@ -144,7 +149,7 @@
                                     <span class="index">
                                         {{ Cart::instance('cart')->count() }}
                                     </span>
-                                    <span class="title">CART</span>
+                                    <span class="title">{{__('header.CART')}}</span>
                                 </div>
                             </a>
                         </div>
@@ -186,20 +191,21 @@
                                         aria-hidden="true"></i></a>
                             </li>
                             <li class="menu-item">
-                                <a href="{{ route('about') }}" class="link-term mercado-item-title">About Us</a>
+                                <a href="{{ route('about') }}" class="link-term mercado-item-title">{{__('header.About Us')}}</a>
                             </li>
                             <li class="menu-item">
-                                <a href="{{ route('shop') }}" class="link-term mercado-item-title">Shop</a>
+                                <a href="{{ route('shop') }}" class="link-term mercado-item-title">{{__('header.Shop')}}</a>
                             </li>
                             <li class="menu-item">
-                                <a href="{{ route('cart') }}" class="link-term mercado-item-title">Cart</a>
+                                <a href="{{ route('cart') }}" class="link-term mercado-item-title">{{__('header.Cart')}}</a>
                             </li>
                             <li class="menu-item">
-                                <a href="{{ route('checkout') }}" class="link-term mercado-item-title">Checkout</a>
+                                <a href="{{ route('checkout') }}" class="link-term mercado-item-title">{{__('header.Checkout')}}</a>
                             </li>
                             <li class="menu-item">
-                                <a href="{{ route('contact') }}" class="link-term mercado-item-title">Contact
-                                    Us</a>
+                                <a href="{{ route('contact') }}" class="link-term mercado-item-title">
+                                    {{__('header.Contact Us')}}
+                                </a>
                             </li>
                         </ul>
                     </div>

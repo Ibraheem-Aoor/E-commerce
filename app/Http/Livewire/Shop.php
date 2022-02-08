@@ -25,6 +25,7 @@ class Shop extends Component
         $this->pagesize = 12;
         $this->minPrice = 1;
         $this->maxPrice = 2500;
+        // Cart::instance('cart')->store(Auth::id());
     }
 
     public function render()
@@ -40,7 +41,7 @@ class Shop extends Component
     {
         if(!Auth::check())
             return redirect(route('login'));
-        $data  = Cart::instance('cart')->add($productId, $productName, 1, $ProductPrice)->associate('App\Models\Product');
+        $data  = Cart::instance('cart')->add($productId, $productName, 1, $ProductPrice)->associate('\App\Models\Product');
         return redirect(route('cart'));
     }
 
@@ -62,6 +63,20 @@ class Shop extends Component
     {
         if(!Auth::check())
             return redirect(route('login'));
-        $datat = Cart::instance('wishlist')->add($productId,$productName,1,$ProductPrice)->associate('App Models\Product');
+        Cart::instance('wishlist')->store(Auth::id());
+        $datat = Cart::instance('wishlist')->add($productId,$productName,1,$ProductPrice)->associate('\App Models\Product');
+    }
+
+
+// Remove from wishlist
+    public function removeFromWishlist($productId)
+    {
+        foreach(Cart::instance('wishlist')->content() as $temp)
+        {
+            if($temp->id == $productId)
+            {
+                Cart::instance('wishlist')->remove($temp->rowId);
+            }
+        }
     }
 }

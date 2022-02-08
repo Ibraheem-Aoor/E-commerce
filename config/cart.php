@@ -12,7 +12,7 @@ return [
     |
     */
 
-    'tax' => 21,
+    'tax' => 5,
 
     /*
     |--------------------------------------------------------------------------
@@ -25,7 +25,6 @@ return [
     */
 
     'database' => [
-
         'connection' => 'mysql',
         'table' => 'shoppingcart',
     ],
@@ -58,7 +57,7 @@ return [
 
         'decimal_point' => '.',
 
-        'thousand_seperator' => ','
+        'thousand_seperator' => ''
 
     ],
 
