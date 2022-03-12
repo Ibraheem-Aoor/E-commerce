@@ -16,13 +16,19 @@ use Exception;
 class Home extends Component
 {
 
-    public $latestProducts , $onsaleProducts , $saleObject;
+    public $latestProducts , $onsaleProducts , $saleObject , $productCategories;
 
     public function mount($id = null)
     {
-        $this->latestProducts = Product::latest('created_at')->take(200)->get();
+        $this->latestProducts = Product::latest()->take(200)->get();
         $this->onsaleProducts = Product::where('sale_price'  , '>', 0)->limit(200)->get();
         $this->saleObject = Sale::findOrFail(1);
+        $this->productCategories = HomePageCategory::all();
+        if(Auth::check())
+        {
+            Cart::instance('cart')->restore(Auth::id());
+            Cart::instance('wishlist')->restore(Auth::id());
+        }
     }
 
     public function render()

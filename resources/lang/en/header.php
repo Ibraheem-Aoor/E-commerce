@@ -14,4 +14,5 @@ return
     'Cart' => 'Cart',
     'Checkout' => 'Checkout',
     'Contact Us' => 'Contact US' ,
+    'profile' => 'profile',
 ];

@@ -14,7 +14,7 @@ class CategoryFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->safeColorName() .random_int(1,1000),
+            'name' => $this->faker->safeColorName().uniqid(1,10000),
             'slug' =>$this->faker->slug(),
         ];
     }

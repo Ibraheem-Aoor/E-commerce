@@ -54,6 +54,9 @@
                                             <li class="menu-item">
                                                 <a href="{{ route('user.orders') }}">{{__('header.orders')}}</a>
                                             </li>
+                                            <li class="menu-item">
+                                                <a href="{{ route('user.profile') }}">{{__('header.profile')}}</a>
+                                            </li>
 
                                             <li class="menu-item">
                                                 <!-- Authentication -->
@@ -73,15 +76,23 @@
 
                             @endif
                             <li class="menu-item lang-menu menu-item-has-children parent">
-                                <a title="English" href="#"><span class="img label-before"><img
+                                <a title="English" href="{{route('lang.change')}}"><span class="img label-before"><img
                                             src="{{ asset('assets/images/lang-en.png') }}"
                                             alt="lang-en"></span>English<i class="fa fa-angle-down"
                                         aria-hidden="true"></i></a>
                                 <ul class="submenu lang">
-                                    <li class="menu-item"><a title="hungary" href="#"><span
+                                    <li class="menu-item"><a title="hungary" href="{{route('lang.change')}}"><span
                                                 class="img label-before"><img
                                                     src="{{ asset('assets/images/lang-hun.png') }}"
                                                     alt="lang-hun"></span>Arabic</a></li>
+                                    <li class="menu-item"><a title="hungary" href="{{route('lang.change')}}"><span
+                                                class="img label-before"><img
+                                                    src="{{ asset('assets/images/lang-hun.png') }}"
+                                                    alt="lang-hun"></span>Indian</a></li>
+                                    <li class="menu-item"><a title="hungary" href="#"><span
+                                                class="img label-before"><img
+                                                    src="{{ asset('assets/images/lang-fra.png') }}"
+                                                    alt="lang-ar"></span>french</a></li>
                                 </ul>
                             </li>
                         </ul>

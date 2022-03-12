@@ -7,7 +7,7 @@
 
             <div class="wrap-breadcrumb">
                 <ul>
-                    <li class="item-link"><a href="#" class="link">home</a></li>
+                    <li class="item-link"><a href="/" class="link">home</a></li>
                     <li class="item-link"><span>detail</span></li>
                 </ul>
 
@@ -19,26 +19,33 @@
                         <div class="detail-media">
                             <div class="product-gallery">
                                 <ul class="slides">
+                                    @forelse($images as $image)
+                                        <li
+                                            data-thumb="{{ asset('uploads/products/' .$product->subCategory->category->name .'/' .$product->subCategory->name .'/gallary' .'/' .$image) }}">
+                                            <img
+                                                src="{{ asset('uploads/products/' .$product->subCategory->category->name .'/' .$product->subCategory->name .'/gallary' .'/' .$image) }}" />
+                                        </li>
+                                    @empty
+                                        <li data-thumb="{{ asset('assets/images/products/'.$product->image) }}">
+                                            <img src="{{ asset('assets/images/products/'.$product->image) }}"
+                                                alt="product thumbnail" />
+                                        </li>
 
-                                    <li data-thumb="{{ asset('assets/images/products/digital_18.jpg') }}">
-                                        <img src="{{ asset('assets/images/products/digital_18.jpg') }}"
-                                            alt="product thumbnail" />
-                                    </li>
+                                        <li data-thumb="{{ asset('assets/images/products/'.$product->image) }}">
+                                            <img src="{{ asset('assets/images/products/'.$product->image) }}"
+                                                alt="product thumbnail" />
+                                        </li>
 
-                                    <li data-thumb="{{ asset('assets/images/products/digital_18.jpg') }}">
-                                        <img src="{{ asset('assets/images/products/digital_18.jpg') }}"
-                                            alt="product thumbnail" />
-                                    </li>
+                                        <li data-thumb="{{ asset('assets/images/products/'.$product->image) }}">
+                                            <img src="{{ asset('assets/images/products/'.$product->image) }}"
+                                                alt="product thumbnail" />
+                                        </li>
 
-                                    <li data-thumb="{{ asset('assets/images/products/digital_18.jpg') }}">
-                                        <img src="{{ asset('assets/images/products/digital_18.jpg') }}"
-                                            alt="product thumbnail" />
-                                    </li>
-
-                                    <li data-thumb="{{ asset('assets/images/products/digital_18.jpg') }}">
-                                        <img src="{{ asset('assets/images/products/digital_18.jpg') }}"
-                                            alt="product thumbnail" />
-                                    </li>
+                                        <li data-thumb="{{ asset('assets/images/products/'.$product->image) }}">
+                                            <img src="{{ asset('assets/images/products/'.$product->image) }}"
+                                                alt="product thumbnail" />
+                                        </li>
+                                    @endforelse
 
                                 </ul>
                             </div>
@@ -49,21 +56,25 @@
                                     @case(1)
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                     @break
+
                                     @case(2)
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                     @break
+
                                     @case(3)
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                     @break
+
                                     @case(4)
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                     @break
+
                                     @case(6)
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star" aria-hidden="true"></i>
@@ -71,10 +82,11 @@
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                     @break
+
                                     @default
                                 @endswitch
 
-                                <a href="#" class="count-review">({{$numOfReviews}} review)</a>
+                                <a href="#" class="count-review">({{ $numOfReviews }} review)</a>
                             </div>
                             <h2 class="product-name">{{ $product->name }}</h2>
                             <div class="short-desc">
@@ -93,15 +105,6 @@
                             </div>
                             <div class="stock-info in-stock">
                                 <p class="availability">Availability: <b>{{ $product->stock_status }}</b></p>
-                            </div>
-                            <div class="quantity">
-                                <span>Quantity:</span>
-                                <div class="quantity-input">
-                                    <input type="text" name="product-quatity" value="1" data-max="120" pattern="[0-9]*">
-
-                                    <a class="btn btn-reduce" href="#"></a>
-                                    <a class="btn btn-increase" href="#"></a>
-                                </div>
                             </div>
                             <div class="wrap-butons">
 
@@ -207,14 +210,15 @@
                                     <li class="product-item">
                                         <div class="product product-widget-style">
                                             <div class="thumbnnail">
-                                                <a href="{{route('product.details' , $p->id)}}" title="{{ $p->name }}">
+                                                <a href="{{ route('product.details', $p->id) }}"
+                                                    title="{{ $p->name }}">
                                                     <figure><img
                                                             src="{{ asset('assets/images/products') }}{{ '/' . $p->image }}"
                                                             alt="{{ $p->name }}"></figure>
                                                 </a>
                                             </div>
                                             <div class="product-info">
-                                                <a href="{{route('product.details' , $p->id)}}"
+                                                <a href="{{ route('product.details', $p->id) }}"
                                                     class="product-name"><span>{{ $p->name }}</span></a>
                                                 <div class="wrap-price"><span
                                                         class="product-price">${{ $p->sale_price }}</span>
@@ -242,7 +246,8 @@
                                 @forelse($relatedProducts as $r)
                                     <div class="product product-style-2 equal-elem ">
                                         <div class="product-thumnail">
-                                            <a href="{{route('product.details' , $r->id)}}" title="{{ $r->name }}">
+                                            <a href="{{ route('product.details', $r->id) }}"
+                                                title="{{ $r->name }}">
                                                 <figure><img
                                                         src="{{ asset('assets/images/products') . '/' . $r->image }}"
                                                         width="214" height="214" alt="{{ $r->name }}">
@@ -252,7 +257,8 @@
                                                 <span class="flash-item new-label">new</span>
                                             </div>
                                             <div class="wrap-btn">
-                                                <a href="#" class="function-link">quick view</a>
+                                                <a href="{{ route('product.details', $r->id) }}"
+                                                    class="function-link">quick view</a>
                                             </div>
                                         </div>
 

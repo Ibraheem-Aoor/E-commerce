@@ -34,7 +34,13 @@
                                             <td>
                                                 <div class="d-flex px-2 py-1">
                                                     <div>
-                                                        <img src="{{ asset('assets/images/small-logos/logo-xd.svg') }}"
+                                                        @php
+                                                            if($user->profile_photo_path)
+                                                                $path = 'uploads/users/' . $user->id . '/' . $user->profile_photo_path;
+                                                            else
+                                                                $path = 'assets/images/user.png';
+                                                        @endphp
+                                                        <img src="{{ asset($path) }} "
                                                             class="avatar avatar-sm me-3">
                                                     </div>
                                                     <div class="d-flex flex-column justify-content-center">

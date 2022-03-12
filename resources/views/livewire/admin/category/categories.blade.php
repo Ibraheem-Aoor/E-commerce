@@ -71,7 +71,7 @@
                                     @endforelse
                                 </tbody>
                             </table>
-                            {{ $categories->links('livewire.admin.components.custom-pagination', ['targetPage' => 'categories']) }}
+                        {{ $categories->links('livewire.admin.components.custom-pagination' , ['targetPage' => 'categories']) }}
                         </div>
                     </div>
 

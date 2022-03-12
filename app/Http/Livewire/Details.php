@@ -22,7 +22,7 @@ class Details extends Component
 
     /* Start Attributes */
     public $product , $relatedProducts , $poularProducts ;
-    public $test , $rate  , $numOfReviews;
+    public $test , $rate  , $numOfReviews ,  $images = [];
     /* End Attributes */
 
 
@@ -32,11 +32,14 @@ class Details extends Component
         $this->product = Product::findOrFail($id);
         $this->poularProducts = Product::where('rate' , '5')->limit(4)->get();
         $this->relatedProducts = Product::where([
-            ['category_id' , '=' , $this->product->category_id ],
+            ['sub_category_id' , '=' , $this->product->sub_category_id ],
             [ 'id' , '!='  , $this->product->id]
         ])->inRandomOrder()->limit(5)->get();
         $this->numOfReviews = Review::where('product_id' , $this->product->id)->count();
-        // $this->setProductRate($id);
+        if($this->product->images)
+        {
+            $this->images = explode(',' , $this->product->images);
+        }
     }
 
     public function render()

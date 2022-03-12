@@ -14,8 +14,9 @@ class ReviewFactory extends Factory
     public function definition()
     {
         return [
-            'content' => $this->faker->name(4500),
-            'product_id' => $this->faker->numberBetween(1,200),
+            'comment' => $this->faker->name(4500),
+            'rating' => $this->faker->numberBetween(1,5),
+            'order_item_id' => 500,
         ];
     }
 }

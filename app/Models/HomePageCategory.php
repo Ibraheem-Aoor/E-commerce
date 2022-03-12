@@ -11,4 +11,9 @@ class HomePageCategory extends Model
     protected $table = 'home_page_categories';
     protected $fillable = ['category_id' ,  'number_of_products'];
     protected $hidden = ['crated_at' , 'updated_at'];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

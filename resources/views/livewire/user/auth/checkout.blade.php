@@ -3,7 +3,11 @@
     <!--main area-->
     <main id="main" class="main-site">
         <div class="container">
-
+            @if(Session::has('error'))
+            <div class="alert alert-danger">
+                {{Session::get('error')}}
+            </div>
+            @endif
             <div class="wrap-breadcrumb">
                 <ul>
                     <li class="item-link"><a href="#" class="link">home</a></li>

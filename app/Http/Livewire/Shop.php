@@ -16,23 +16,17 @@ class Shop extends Component
 
 // Attributes
     public $sortMode , $pagesize;
-    public $maxPrice , $minPrice;
 
 // livewire Constructor
     public function mount($category_id = null)
     {
         $this->sortMode = 'default';
         $this->pagesize = 12;
-        $this->minPrice = 1;
-        $this->maxPrice = 2500;
-        // Cart::instance('cart')->store(Auth::id());
-    }
-
-    public function render()
-    {
-        $products = $this->sortItems();
-        $categories = Category::all();
-        return view('livewire.shop' , ['products' => $products , 'categories' => $categories])->extends('layouts.master')->section('content');
+        if(Auth::check())
+        {
+            Cart::instance('cart')->store(Auth::id());
+            Cart::instance('wishlist')->store(Auth::id());
+        }
     }
 
 
@@ -63,8 +57,7 @@ class Shop extends Component
     {
         if(!Auth::check())
             return redirect(route('login'));
-        Cart::instance('wishlist')->store(Auth::id());
-        $datat = Cart::instance('wishlist')->add($productId,$productName,1,$ProductPrice)->associate('\App Models\Product');
+        Cart::instance('wishlist')->add($productId,$productName,1,$ProductPrice)->associate('\App Models\Product');
     }
 
 
@@ -79,4 +72,15 @@ class Shop extends Component
             }
         }
     }
+
+
+
+
+    public function render()
+    {
+        $categories = Category::with('subCategories')->lazyById(2000);
+        $products = $this->sortItems();
+        return view('livewire.shop' , ['products' => $products , 'categories' => $categories])->extends('layouts.master')->section('content');
+    }
+
 }

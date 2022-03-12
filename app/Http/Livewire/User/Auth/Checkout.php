@@ -9,6 +9,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
 use App\Helpers\Checkout\Shipper;
 use App\Helpers\Checkout\Transactor;
+use Aws\EKS\Exception\EKSException;
 use Livewire\Component;
 
 class Checkout extends Component
@@ -30,6 +31,7 @@ class Checkout extends Component
 
     /* Start public methods */
 
+
 // making an order (Ordering - shipping - paying & transacting)
     public function placeOrder()
     {
@@ -37,8 +39,13 @@ class Checkout extends Component
         $shipper = new Shipper($this);
         $order = new HelpersOrder($this);
         $this->orderId = $order->makeOrder();
-        $this->pay();//making transactions here
         $shipper->makeShipping();
+        if($this->paymentMethod == 'paypal' )
+            return redirect(route('processTransaction'));
+        else
+        {
+            $this->pay();//making transactions here
+        }
         $this->clearCart();
         session()->forget('data');
         return redirect(route('thanks'));

@@ -30,7 +30,10 @@
                                 <td>{{ $order->tax }}</td>
                                 <td>{{ $order->total }}</td>
                                 <td>{{ $order->status }}</td>
-                                <td><button class="btn btn-danger" wire:click="cancelOrder({{$order->id}})">Cancel</button></td>
+                                <td>
+                                    <button class="btn btn-danger" wire:click="cancelOrder({{$order->id}})">Cancel</button>
+                                    <a class="btn btn-info" href="{{route('user.order.details' , $order->id)}}">Details</a>
+                                </td>
                             </tr>
                         @empty
                             <div class="text-center">

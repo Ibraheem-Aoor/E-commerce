@@ -1,5 +1,5 @@
 <main>
-    @section('page' , 'Dashboard')
+    @section('page', 'Dashboard')
     <div class="container-fluid py-4">
         <div class="row">
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
@@ -8,9 +8,9 @@
                         <div class="row">
                             <div class="col-8">
                                 <div class="numbers">
-                                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Today's Money</p>
+                                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Clients</p>
                                     <h5 class="font-weight-bolder mb-0">
-                                        $53,000
+                                        {{$numberOfUsers}}
                                         <span class="text-success text-sm font-weight-bolder">+55%</span>
                                     </h5>
                                 </div>
@@ -30,9 +30,9 @@
                         <div class="row">
                             <div class="col-8">
                                 <div class="numbers">
-                                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Today's Users</p>
+                                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Products</p>
                                     <h5 class="font-weight-bolder mb-0">
-                                        2,300
+                                        {{$numberOfProducts}}
                                         <span class="text-success text-sm font-weight-bolder">+3%</span>
                                     </h5>
                                 </div>
@@ -52,9 +52,9 @@
                         <div class="row">
                             <div class="col-8">
                                 <div class="numbers">
-                                    <p class="text-sm mb-0 text-capitalize font-weight-bold">New Clients</p>
+                                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Categories</p>
                                     <h5 class="font-weight-bolder mb-0">
-                                        +3,462
+                                        {{$numberOfCategories}}
                                         <span class="text-danger text-sm font-weight-bolder">-2%</span>
                                     </h5>
                                 </div>
@@ -74,9 +74,9 @@
                         <div class="row">
                             <div class="col-8">
                                 <div class="numbers">
-                                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Sales</p>
+                                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Orders</p>
                                     <h5 class="font-weight-bolder mb-0">
-                                        $103,430
+                                        {{$numberOfProducts}}
                                         <span class="text-success text-sm font-weight-bolder">+5%</span>
                                     </h5>
                                 </div>
@@ -373,10 +373,10 @@
                                     <tr>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Companies</th>
+                                            Name</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            Members</th>
+                                            Email</th>
                                         <th
                                             class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Budget</th>
@@ -758,6 +758,20 @@
 </main>
 
 <!--   Core JS Files   -->
+<script>
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('f9572174c9a7f00645a4', {
+        cluster: 'mt1'
+    });
+    $userId = "{{Auth::id()}}";
+    var channel = pusher.subscribe('user-added');
+    channel.bind('Illuminate\Notifications\Events\BroadcastNotificationCreated', function(data) {
+        console.log(data);
+    });
+</script>
+
 <script src="{{ asset('assets/js/plugins/chartjs.min.js') }}"></script>
 <script src="{{ asset('assets/js/plugins/Chart.extension.js') }}"></script>
 <script>

@@ -3,15 +3,15 @@
         <ul class="pagination">
             {{-- Prev --}}
             @if ($paginator->onFirstPage())
-                <li class="page-item" tyle="cursor:not-allowed">
+                <li class="page-item" style="cursor:not-allowed">
                     <a class="page-link" href="javascript:;" aria-label="Previous">
                         <i class="fa fa-angle-left"></i>
                         <span class="sr-only">Previous</span>
                     </a>
                 </li>
             @else
-                <li class="page-item" tyle="cursor: ىnot-allowed">
-                    <a class="page-link" href="javascript:;" aria-label="Previous" wire:click="previousPage">
+                <li class="page-item" >
+                    <a class="page-link" style="cursor: pointer" aria-label="Previous" wire:click="previousPage">
                         <i class="fa fa-angle-left"></i>
                         <span class="sr-only">Previous</span>
                     </a>

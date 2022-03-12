@@ -8,7 +8,7 @@ use Illuminate\Database\Seeder;
 class SalesSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Run the database !seeds.
      *
      * @return void
      */

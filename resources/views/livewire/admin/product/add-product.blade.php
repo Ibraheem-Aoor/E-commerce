@@ -68,6 +68,25 @@
                                         @enderror
                                     </div>
                                 </div>
+                                @if ($productCategoryId)
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Sub Category</label>
+                                            <select class="form-control" wire:model="productSubCategoryId">
+                                                <option value="" selected>Choose</option>
+                                                {{-- <option value="" selected>choose one</option> --}}
+                                                @forelse(\App\Models\Category::where('id' , $productCategoryId)->first()->subCategories as $subCategory)
+                                                    <option value="{{ $subCategory->id }}">{{ $subCategory->name }}
+                                                    </option>
+                                                @empty
+                                                @endforelse
+                                            </select>
+                                            @error('productSubCategoryId')
+                                                <span style="color:red;">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                @endif
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Quantity:</label>
@@ -85,7 +104,7 @@
                                             <span style="color:red;">{{ $message }}</span>
                                         @enderror
                                     </div>
-                                    
+
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -110,11 +129,38 @@
                                         <label>primary image:</label>
                                         <input type="file" class="form-control" id="image"
                                             wire:model.lazy="primaryImage">
+                                        @if ($primaryImage)
+                                            <img width="300" src="{{ $primaryImage->temporaryUrl() }}" alt="">
+                                        @endif
                                         @error('primaryImage')
                                             <span style="color:red;">{{ $message }}</span>
                                         @enderror
                                     </div>
                                 </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Product Image Gallary:</label>
+                                        <input type="file" class="form-control" id="image" multiple
+                                            wire:model.lazy="images">
+                                        @if ($images)
+                                            @foreach ($images as $image)
+                                                <img width="300" src="{{ $image->temporaryUrl() }}">
+                                            @endforeach
+                                        @endif
+                                        @error('images')
+                                            <span style="color:red;">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12" wire:ignore>
+                                    <div class="form-group">
+                                        <label for="Description">Description:</label> <br>
+                                        <textarea class="form-controll" wire:model.lazy="description" cols="50" rows="15" style="resize: none" id="description"></textarea>
+                                    </div>
+                                </div>
+
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <input type="submit" class="form-control" value="ADD">
@@ -129,12 +175,23 @@
         </div>
     </div>
 </div>
-
-
+{{--
 @push('scripts')
-    <script type="text/javascript">
-        $(function() {
-            $('#datetimepicker4').datetimepicker();
+    <script src="https://cdn.tiny.cloud/1/03zj9so83mh0q16aoxr0z465d1dxzqxic21h544gsh9f2xor/tinymce/5/tinymce.min.js"
+        referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea#description', // Replace this CSS selector to match the placeholder element for TinyMCE
+            plugins: 'code table lists',
+            toolbar: 'undo redo | formatselect| bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table'
+            // setup: function(editor) {
+            //     editor.on('change', function(e) {
+            //         tinyMCE.triggerSave();
+            //         var data = $('#description').val();
+            //         @this.set('description', data);
+            //     });
+            // }
         });
     </script>
 @endpush
+--}}
