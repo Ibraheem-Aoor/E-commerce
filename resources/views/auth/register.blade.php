@@ -88,7 +88,7 @@
                                         <fieldset class="wrap-input">
                                             <label for="frm-reg-lname">Name*</label>
                                             <input type="text" id="frm-reg-lname" name="name" required placeholder="Name*"
-                                                :vlaue="old('email')">
+                                                :vlaue="old('name')">
                                             <span style="color:red">
                                                 @error('name')
                                                     {{ $message }}

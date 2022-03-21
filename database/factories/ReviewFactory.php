@@ -17,6 +17,7 @@ class ReviewFactory extends Factory
             'comment' => $this->faker->name(4500),
             'rating' => $this->faker->numberBetween(1,5),
             'order_item_id' => 500,
+            'Author' => $this->faker->name(),
         ];
     }
 }

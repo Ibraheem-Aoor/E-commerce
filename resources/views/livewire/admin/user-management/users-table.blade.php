@@ -26,6 +26,9 @@
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             Actions</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            <a class="btn btn-info" href="{{route('admin.users.add')}}">ADD NEW</a></th>
                                     </tr>
                                 </thead>
                                 <tbody>

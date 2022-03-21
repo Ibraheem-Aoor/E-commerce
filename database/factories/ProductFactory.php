@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ProductFactory extends Factory
@@ -11,6 +12,7 @@ class ProductFactory extends Factory
      *
      * @return array
      */
+    protected $model = Product::class;
     public function definition()
     {
         return [
@@ -24,8 +26,9 @@ class ProductFactory extends Factory
             'image' => 'digital_'.$this->faker->numberBetween(1,22).'.jpg',
             'weight' => $this->faker->randomNumber(),
             'color' => $this->faker->colorName(),
-            'dimensions' => $this->faker->serialize(),
+            'dimensions' => $this->faker->randomNumber(),
             'sub_category_id' => $this->faker->numberBetween(1,500),
+            'stock_status' => 'instock',
         ];
     }
 }

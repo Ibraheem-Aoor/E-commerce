@@ -78,7 +78,7 @@
                                         <fieldset class="wrap-input">
                                             <label for="frm-login-uname">Email Address:</label>
                                             <input type="text" id="frm-login-uname" name="email"
-                                                value="{{ old('email') }}" required placeholder="Type your email address">
+                                            :value="old('email')" required placeholder="Type your email address">
 
 
                                         </fieldset>

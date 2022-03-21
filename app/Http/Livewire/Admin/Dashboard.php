@@ -10,6 +10,16 @@ use Livewire\Component;
 
 class Dashboard extends Component
 {
+    public $chartData=[] , $latestUsers;
+    public function mount()
+    {
+        $this->chartData = User::selectRaw('COUNT(*) as count, MONTH(id) month')
+        ->groupBy('month')
+        ->get();
+        $this->latestUsers = User::latest()->take(6)->get();
+    }
+
+
     public function render()
     {
         $numberOfOrders = Order::count();

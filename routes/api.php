@@ -34,7 +34,7 @@ Route::middleware('auth:sanctum')->group(function()
         Route::apiResource('/social-links' , SocialLinksSettingsController::class);
     });
 
-    // Any User Api Routes.
+    // Any Auth User Api Routes.
     Route::apiResource('/orders' , OrderController::class);
     Route::get('/auth/tokens' , [AuthTokenController::class , 'index']);
     Route::get('/auth/delete/{id}' , [AuthTokenController::class , 'destroy']);

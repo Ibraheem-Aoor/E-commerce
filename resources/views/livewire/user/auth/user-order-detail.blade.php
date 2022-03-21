@@ -23,7 +23,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($orderItems as $item)
+                                    @forelse ($orderItems as $item)
                                         <tr>
                                             <td>
                                                 <figure>
@@ -32,8 +32,16 @@
                                             </td>
                                             <td>{{$item->product->name}}</td>
                                             <td>{{$item->price}}</td>
+                                            <td><a class="btn btn-info" href="{{route('user.review.write' , $item->id)}}">Write Review</a></td>
                                         </tr>
-                                    @endforeach
+                                        @empty
+                                        <tr>
+                                            <td colspan="4"><h4 class="text-success text-center">No Orders Yet! <br>
+                                                <a class="btn btn-success" style="margin-top:2;" href="/shop">Continue Shopping</a>
+                                            </h4>
+                                            </td>
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>

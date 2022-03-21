@@ -21,12 +21,16 @@
                                     <div class="row">
                                         <div class="col-sm-4">
                                             @if ($admin->profile_photo_path)
-                                                {{-- <img src="{{}}" alt=""> --}}
+                                                <img src="{{ asset('uploads/admins' . '/' . Auth::id() . '/' . $admin->profile_photo_path) }}"
+                                                    alt="user-image">
+                                            @elseif($newImage)
+                                                <img src="{{ $newImage->temporaryUrl() }}" alt="">
                                             @else
                                                 <img src="{{ asset('assets/images/user.png') }}" alt="user-avatar">
                                             @endif
                                             <div>
-                                                <input type="file" placeholder="Change Image" class="form-control">
+                                                <input type="file" placeholder="Change Image" class="form-control"
+                                                    wire:model="newImage">
                                             </div>
                                         </div>
 

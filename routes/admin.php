@@ -21,7 +21,6 @@ use App\Http\Livewire\Admin\Orders\Order;
 use App\Http\Livewire\Admin\Orders\OrderDetails;
 use App\Http\Livewire\Admin\Orders\Transaction;
 use App\Http\Livewire\Admin\Product\EditProduct;
-use App\Http\Livewire\Admin\UserManagment\User;
 use App\Http\Livewire\Admin\Sale\SaleDate;
 use App\Http\Livewire\Admin\settings\Settings;
 use App\Http\Livewire\Admin\UserManagment\contacts\Contacts;
@@ -31,6 +30,8 @@ use App\Http\Livewire\Admin\profile\UpdateAdminProfile;
 use App\Http\Livewire\Admin\settings\AddNewRole;
 use App\Http\Livewire\Admin\settings\Role;
 use App\Http\Livewire\Admin\settings\RoleDetails;
+use App\Http\Livewire\Admin\UserManagment\users\AddNewUser;
+use App\Http\Livewire\Admin\UserManagment\users\User ;
 
 // Prefix => admin
     Route::group(['middleware' => ['auth' , 'authAdmin'] ] , function()
@@ -50,6 +51,7 @@ use App\Http\Livewire\Admin\settings\RoleDetails;
 
         //user-management
         Route::get('user-managment' , User::class)->name('admin.users.show');
+        Route::get('user-managment/new' , AddNewUser::class)->name('admin.users.add');
         Route::get('contacts' , Contacts::class)->name('admin.users.contacts');
         Route::get('contact/{id}' , ContactDetails::class)->name('admin.users.contact.details');
 

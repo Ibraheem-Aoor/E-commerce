@@ -29,9 +29,8 @@ use Illuminate\Support\Facades\Hash;
         $user = User::where('email' , $request->email)->first();
         $userWithPw =  $user->makeVisible(['password']); //becuase it's hidden from the model
         if($userWithPw && Hash::check($request->password , $userWithPw->password))  //credintails checked (Auth user)
-        {
             return $this->createTokenAndResponse($request , $userWithPw);
-        }
+
         else
             return response()->json(['msg' => 'Invalid login data'] , 401);
     }
@@ -66,7 +65,6 @@ use Illuminate\Support\Facades\Hash;
         $token->delete();
         return response()->json(
             ['message' => 'You\'re Logged Out successfully ']
-
         );
     }
 
@@ -78,6 +76,5 @@ use Illuminate\Support\Facades\Hash;
         return response()->json(
             ['message' => 'All Tokens have been deleted Successfully']
         );
-
     }
 }
