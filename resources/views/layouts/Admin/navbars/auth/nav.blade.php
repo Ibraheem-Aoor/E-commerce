@@ -11,7 +11,11 @@
                 </ol>
             </nav>
             <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4 d-flex justify-content-end" id="navbar">
+<<<<<<< HEAD
                 @livewire('admin-nav')
+=======
+               @livewire('admin-nav')
+>>>>>>> 95d4ed153837b2dcbc2e06237d40bb304277db34
             </div>
         </div>
     </nav>

@@ -102,7 +102,11 @@
 
                         <div class="wrap-logo-top left-section">
                             <a href="/" class="link-to-home">
+<<<<<<< HEAD
                                 <h2></h2>
+=======
+                                <h2>Mohammed Maniak</h2>
+>>>>>>> 95d4ed153837b2dcbc2e06237d40bb304277db34
                             </a>
                         </div>
 

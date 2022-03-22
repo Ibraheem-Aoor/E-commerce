@@ -77,6 +77,9 @@ use App\Http\Livewire\Admin\UserManagment\users\User ;
         // profile
         Route::get('/profile' , AdminProfile::class)->name('admin.profile');
         Route::get('/profile-update' , UpdateAdminProfile::class)->name('admin.profile.update');
+<<<<<<< HEAD
 
         // Route::get('/test' , AdminNav::class);
+=======
+>>>>>>> 95d4ed153837b2dcbc2e06237d40bb304277db34
     });

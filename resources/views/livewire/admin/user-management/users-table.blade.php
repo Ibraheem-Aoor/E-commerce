@@ -40,7 +40,11 @@
                                                         @php
                                                             if($user->profile_photo_path)
                                                                 $path = 'uploads/users/' . $user->id . '/' . $user->profile_photo_path;
+<<<<<<< HEAD
                                                             else    
+=======
+                                                            else
+>>>>>>> 95d4ed153837b2dcbc2e06237d40bb304277db34
                                                                 $path = 'assets/images/user.png';
                                                         @endphp
                                                         <img src="{{ asset($path) }} "
