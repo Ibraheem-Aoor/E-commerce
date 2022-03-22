@@ -11,7 +11,7 @@
                 </li>
             @else
                 <li class="page-item" tyle="cursor: ىnot-allowed">
-                    <a class="page-link" href="javascript:;" aria-label="Previous" wire:click="previousPage">
+                    <a class="page-link" aria-label="Previous" wire:click="previousPage">
                         <i class="fa fa-angle-left"></i>
                         <span class="sr-only">Previous</span>
                     </a>

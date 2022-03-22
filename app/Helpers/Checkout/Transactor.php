@@ -13,7 +13,7 @@ class Transactor extends CheckoutHelper
     public $mode , $status='pending';
 
 
-    /* Start public methods */
+    //make the transaction either for catd payment metohd or cod
     public function makeTransaction()
     {
         if($this->checkout->paymentMethod == 'card')
@@ -90,17 +90,17 @@ class Transactor extends CheckoutHelper
                     return dd('error in transaction');
                 }
             }
-
-            }catch(Exception $e)
+        }
+            catch(Exception $e)
             {
                 return dd($e->getMessage());
             }
-        }
+    }
 
 
-        public function setStatus($status)
-        {
-            $this->status = $status;
-        }
-
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
+    
 }

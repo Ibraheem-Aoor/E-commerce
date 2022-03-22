@@ -18,8 +18,8 @@
 
                                 <div class="product-thumnail">
                                     <a href="details/{{ $product->id }}"
-                                        title="T-Shirt Raw Hem Organic Boro Constrast Denim">
-                                        <figure><img src="assets/images/products/{{ $product->image }}"
+                                        title="T-Shirt Raw Hem Organic Boro Constrast Denim">   
+                                        <figure><img src="{{asset('assets/images/products/'.$product->image)}}"
                                                 alt="T-Shirt Raw Hem Organic Boro Constrast Denim"></figure>
                                     </a>
                                 </div>

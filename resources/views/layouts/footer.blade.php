@@ -7,32 +7,32 @@
                     <li class="fc-info-item">
                         <i class="fa fa-truck" aria-hidden="true"></i>
                         <div class="wrap-left-info">
-                            <h4 class="fc-name">Free Shipping</h4>
-                            <p class="fc-desc">Free On Oder Over $99</p>
+                            <h4 class="fc-name">{{__('footer.Free Shipping')}}</h4>
+                            <p class="fc-desc">{{__('footer.Free On Oder Over $99')}}</p>
                         </div>
 
                     </li>
                     <li class="fc-info-item">
                         <i class="fa fa-recycle" aria-hidden="true"></i>
                         <div class="wrap-left-info">
-                            <h4 class="fc-name">Guarantee</h4>
-                            <p class="fc-desc">30 Days Money Back</p>
+                            <h4 class="fc-name">{{__('footer.Guarantee')}}</h4>
+                            <p class="fc-desc">{{__('footer.30 Days Money Back')}}</p>
                         </div>
 
                     </li>
                     <li class="fc-info-item">
                         <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
                         <div class="wrap-left-info">
-                            <h4 class="fc-name">Safe Payment</h4>
-                            <p class="fc-desc">Safe your online payment</p>
+                            <h4 class="fc-name">{{__('footer.Safe Payment')}}</h4>
+                            <p class="fc-desc">{{__('footer.Safe your online payment')}}</p>
                         </div>
 
                     </li>
                     <li class="fc-info-item">
                         <i class="fa fa-life-ring" aria-hidden="true"></i>
                         <div class="wrap-left-info">
-                            <h4 class="fc-name">Online Suport</h4>
-                            <p class="fc-desc">We Have Support 24/7</p>
+                            <h4 class="fc-name">{{__('footer.Online Suport')}}</h4>
+                            <p class="fc-desc">{{__('footer.We Have Support 24/7')}}</p>
                         </div>
 
                     </li>
@@ -49,14 +49,13 @@
 
                     <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
                         <div class="wrap-footer-item">
-                            <h3 class="item-header">Contact Details</h3>
+                            <h3 class="item-header">{{__('footer.Contact Details')}}</h3>
                             <div class="item-content">
                                 <div class="wrap-contact-detail">
                                     <ul>
                                         <li>
                                             <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                            <p class="contact-txt">45 Grand Central Terminal New York,NY 1017 United
-                                                State USA</p>
+                                            <p class="contact-txt">{{__('footer.s_1')}}</p>
                                         </li>
                                         <li>
                                             <i class="fa fa-phone" aria-hidden="true"></i>
@@ -73,25 +72,24 @@
                     </div>
 
                     <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
-
                         <div class="wrap-footer-item">
-                            <h3 class="item-header">Hot Line</h3>
+                            <h3 class="item-header">{{__('footer.Hot Line')}}</h3>
                             <div class="item-content">
                                 <div class="wrap-hotline-footer">
-                                    <span class="desc">Call Us toll Free</span>
+                                    <span class="desc">{{__('footer.Call Us toll Free')}}</span>
                                     <b class="phone-number">(+123) 456 789 - (+123) 666 888</b>
                                 </div>
                             </div>
                         </div>
 
                         <div class="wrap-footer-item footer-item-second">
-                            <h3 class="item-header">Sign up for newsletter</h3>
+                            <h3 class="item-header">{{__('footer.Sign up for newsletter')}}</h3>
                             <div class="item-content">
                                 <div class="wrap-newletter-footer">
                                     <form action="#" class="frm-newletter" id="frm-newletter">
                                         <input type="email" class="input-email" name="email" value=""
                                             placeholder="Enter your email address">
-                                        <button class="btn-submit">Subscribe</button>
+                                        <button class="btn-submit">{{__('footer.Subscribe')}}</button>
                                     </form>
                                 </div>
                             </div>
@@ -102,39 +100,38 @@
                     <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12 box-twin-content ">
                         <div class="row">
                             <div class="wrap-footer-item twin-item">
-                                <h3 class="item-header">My Account</h3>
+                                <h3 class="item-header">{{__('footer.My Account')}}</h3>
                                 <div class="item-content">
                                     <div class="wrap-vertical-nav">
                                         <ul>
-                                            <li class="menu-item"><a href="#" class="link-term">My Account</a>
+                                            <li class="menu-item"><a href="#" class="link-term">{{__('footer.My Account')}}</a>
                                             </li>
-                                            <li class="menu-item"><a href="#" class="link-term">Brands</a>
+                                            <li class="menu-item"><a href="#" class="link-term">{{__('footer.Brands')}}</a>
                                             </li>
-                                            <li class="menu-item"><a href="#" class="link-term">Gift
+                                            <li class="menu-item"><a href="#" class="link-term">{{__('footer.Gift')}}
                                                     Certificates</a></li>
-                                            <li class="menu-item"><a href="#" class="link-term">Affiliates</a>
+                                            <li class="menu-item"><a href="#" class="link-term">{{__('footer.Affiliates')}}</a>
                                             </li>
-                                            <li class="menu-item"><a href="#" class="link-term">Wish list</a>
+                                            <li class="menu-item"><a href="#" class="link-term">{{__('footer.Wish list')}}</a>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                             <div class="wrap-footer-item twin-item">
-                                <h3 class="item-header">Infomation</h3>
+                                <h3 class="item-header">{{__('footer.Infomation')}}</h3>
                                 <div class="item-content">
                                     <div class="wrap-vertical-nav">
                                         <ul>
-                                            <li class="menu-item"><a href="#" class="link-term">Contact Us</a>
+                                            <li class="menu-item"><a href="#" class="link-term">{{__('footer.Contact Us')}}</a>
                                             </li>
-                                            <li class="menu-item"><a href="#" class="link-term">Returns</a>
+                                            <li class="menu-item"><a href="#" class="link-term">{{__('footer.Returns')}}</a>
                                             </li>
-                                            <li class="menu-item"><a href="#" class="link-term">Site Map</a>
+                                            <li class="menu-item"><a href="#" class="link-term">{{__('footer.Site Map')}}</a>
                                             </li>
-                                            <li class="menu-item"><a href="#" class="link-term">Specials</a>
+                                            <li class="menu-item"><a href="#" class="link-term">{{__('footer.Specials')}}</a>
                                             </li>
-                                            <li class="menu-item"><a href="#" class="link-term">Order
-                                                    History</a></li>
+                                            <li class="menu-item"><a href="#" class="link-term">{{__('footer.Order History')}}</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -148,7 +145,7 @@
 
                     <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
                         <div class="wrap-footer-item">
-                            <h3 class="item-header">We Using Safe Payments:</h3>
+                            <h3 class="item-header">{{__('footer.We Using Safe Payments:')}}</h3>
                             <div class="item-content">
                                 <div class="wrap-list-item wrap-gallery">
                                     <img src="{{ asset('assets/images/payment.png') }}" style="max-width: 260px;">
@@ -159,7 +156,7 @@
 
                     <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
                         <div class="wrap-footer-item">
-                            <h3 class="item-header">Social network</h3>
+                            <h3 class="item-header">{{__('footer.Social network')}}</h3>
                             <div class="item-content">
                                 <div class="wrap-list-item social-network">
                                     <ul>
@@ -181,7 +178,7 @@
 
                     <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
                         <div class="wrap-footer-item">
-                            <h3 class="item-header">Dowload App</h3>
+                            <h3 class="item-header">{{__('footer.Dowload App')}}</h3>
                             <div class="item-content">
                                 <div class="wrap-list-item apps-list">
                                     <ul>
@@ -203,91 +200,83 @@
 
                 </div>
             </div>
-
+{{--
             <div class="wrap-back-link">
                 <div class="container">
                     <div class="back-link-box">
-                        <h3 class="backlink-title">Quick Links</h3>
+                        <h3 class="backlink-title">{{__('footer.Quick Links')}}</h3>
                         <div class="back-link-row">
                             <ul class="list-back-link">
-                                <li><span class="row-title">Mobiles:</span></li>
-                                <li><a href="#" class="redirect-back-link" title="mobile">Mobiles</a></li>
-                                <li><a href="#" class="redirect-back-link" title="yphones">YPhones</a></li>
-                                <li><a href="#" class="redirect-back-link" title="Gianee Mobiles GL">Gianee Mobiles
+                                <li><span class="row-title">{{__('footer.Mobiles:')}}</span></li>
+                                <li><a href="#" class="redirect-back-link" title="mobile">{{__('F footer.Mobiles')}}</a></li>
+                                <li><a href="#" class="redirect-back-link" title="yphones">{{__('Ffooter.YPhones')}}</a></li>
+                                <li><a href="#" class="redirect-back-link" title="Gianee Mobiles GL">{{__('F  footer.Gianee Mobiles')}}
                                         GL</a></li>
-                                <li><a href="#" class="redirect-back-link" title="Mobiles Karbonn">Mobiles Karbonn</a>
+                                <li><a href="#" class="redirect-back-link" title="Mobiles Karbonn"> </a>
                                 </li>
-                                <li><a href="#" class="redirect-back-link" title="Mobiles Viva">Mobiles Viva</a></li>
-                                <li><a href="#" class="redirect-back-link" title="Mobiles Intex">Mobiles Intex</a></li>
-                                <li><a href="#" class="redirect-back-link" title="Mobiles Micrumex">Mobiles
-                                        Micrumex</a></li>
-                                <li><a href="#" class="redirect-back-link" title="Mobiles Bsus">Mobiles Bsus</a></li>
-                                <li><a href="#" class="redirect-back-link" title="Mobiles Samsyng">Mobiles Samsyng</a>
+                                <li><a href="#" class="redirect-back-link" title="Mobiles Viva">{{__('footer.Mobiles Viva')}}</a></li>
+                                <li><a href="#" class="redirect-back-link" title="Mobiles Intex">{{__('F  footer.Mobiles Intex')}}</a></li>
+                                <li><a href="#" class="redirect-back-link" title="Mobiles Micrumex">{{__('footer.Mobiles Micrumex')}}</a></li>
+                                <li><a href="#" class="redirect-back-link" title="Mobiles Bsus">{{__('footer.Mobiles Bsus')}}</a></li>
+                                <li><a href="#" class="redirect-back-link" title="Mobiles Samsyng">{{__('Ffooter.Mobiles Samsyng')}}</a>
                                 </li>
-                                <li><a href="#" class="redirect-back-link" title="Mobiles Lenova">Mobiles Lenova</a>
+                                <li><a href="#" class="redirect-back-link" title="Mobiles Lenova">{{__('F footer.Mobiles Lenova')}}</a>
                                 </li>
                             </ul>
 
                             <ul class="list-back-link">
-                                <li><span class="row-title">Tablets:</span></li>
-                                <li><a href="#" class="redirect-back-link" title="Plesc YPads">Plesc YPads</a></li>
-                                <li><a href="#" class="redirect-back-link" title="Samsyng Tablets">Samsyng Tablets</a>
+                                <li><span class="row-title">{{__('footer.Tablets')}}:</span></li>
+                                <li><a href="#" class="redirect-back-link" title="Plesc YPads">{{__('Ffooter.Plesc YPads')}}</a></li>
+                                <li><a href="#" class="redirect-back-link" title="Samsyng Tablets">{{__('Ffooter.Samsyng Tablets')}}</a>
                                 </li>
-                                <li><a href="#" class="redirect-back-link" title="Qindows Tablets">Qindows Tablets</a>
+                                <li><a href="#" class="redirect-back-link" title="Qindows Tablets">{{__('Ffooter.Qindows Tablets')}}</a>
                                 </li>
-                                <li><a href="#" class="redirect-back-link" title="Calling Tablets">Calling Tablets</a>
+                                <li><a href="#" class="redirect-back-link" title="Calling Tablets">{{__('Ffooter.Calling Tablets')}}</a>
                                 </li>
-                                <li><a href="#" class="redirect-back-link" title="Micrumex Tablets">Micrumex
-                                        Tablets</a></li>
-                                <li><a href="#" class="redirect-back-link" title="Lenova Tablets Bsus">Lenova Tablets
-                                        Bsus</a></li>
-                                <li><a href="#" class="redirect-back-link" title="Tablets iBall">Tablets iBall</a></li>
-                                <li><a href="#" class="redirect-back-link" title="Tablets Swipe">Tablets Swipe</a></li>
-                                <li><a href="#" class="redirect-back-link" title="Tablets TVs, Audio">Tablets TVs,
-                                        Audio</a></li>
+                                <li><a href="#" class="redirect-back-link" title="Micrumex Tablets">{{__('footer.Micrumex Tablets')}}</a></li>
+                                <li><a href="#" class="redirect-back-link" title="Lenova Tablets Bsus">{{__('Ffooter.Lenova Tablets Bsus')}}</a></li>
+                                <li><a href="#" class="redirect-back-link" title="Tablets iBall">{{__('F  footer.Tablets iBall')}}</a></li>
+                                <li><a href="#" class="redirect-back-link" title="Tablets Swipe">{{__('F  footer.Tablets Swipe<')}}/a></li>
+                                <li><a href="#" class="redirect-back-link" title="Tablets TVs, Audio">{{__('F footer.Tablets TVs, Audio')}}</a></li>
                             </ul>
 
                             <ul class="list-back-link">
-                                <li><span class="row-title">Fashion:</span></li>
-                                <li><a href="#" class="redirect-back-link" title="Sarees Silk">Sarees Silk</a></li>
-                                <li><a href="#" class="redirect-back-link" title="sarees Salwar">sarees Salwar</a></li>
-                                <li><a href="#" class="redirect-back-link" title="Suits Lehengas">Suits Lehengas</a>
+                                <li><span class="row-title">{{__('footer.Fashion:')}}</span></li>
+                                <li><a href="#" class="redirect-back-link" title="Sarees Silk">{{__('Ffooter.Sarees Silk')}}</a></li>
+                                <li><a href="#" class="redirect-back-link" title="sarees Salwar">{{__('F  footer.sarees Salwar')}}</a></li>
+                                <li><a href="#" class="redirect-back-link" title="Suits Lehengas">{{__('F footer.Suits Lehengas')}}</a>
                                 </li>
-                                <li><a href="#" class="redirect-back-link" title="Biba Jewellery">Biba Jewellery</a>
+                                <li><a href="#" class="redirect-back-link" title="Biba Jewellery">{{__('F footer.Biba Jewellery')}}</a>
                                 </li>
-                                <li><a href="#" class="redirect-back-link" title="Rings Earrings">Rings Earrings</a>
+                                <li><a href="#" class="redirect-back-link" title="Rings Earrings">{{__('F footer.Rings Earrings')}}</a>
                                 </li>
-                                <li><a href="#" class="redirect-back-link" title="Diamond Rings">Diamond Rings</a></li>
-                                <li><a href="#" class="redirect-back-link" title="Loose Diamond Shoes">Loose Diamond
-                                        Shoes</a></li>
-                                <li><a href="#" class="redirect-back-link" title="BootsMen Watches">BootsMen
-                                        Watches</a></li>
-                                <li><a href="#" class="redirect-back-link" title="Women Watches">Women Watches</a></li>
+                                <li><a href="#" class="redirect-back-link" title="Diamond Rings">{{__('F  footer.Diamond Rings')}}</a></li>
+                                <li><a href="#" class="redirect-back-link" title="Loose Diamond Shoes">{{__('Ffooter.Loose Diamond Shoes')}}</a></li>
+                                <li><a href="#" class="redirect-back-link" title="BootsMen Watches">{{__('footer.BootsMen Watches')}}</a></li>
+                                <li><a href="#" class="redirect-back-link" title="Women Watches">{{__('F  footer.Women Watches')}}</a></li>
                             </ul>
 
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
         </div>
 
         <div class="coppy-right-box">
             <div class="container">
                 <div class="coppy-right-item item-left">
-                    <p class="coppy-right-text">Copyright © 2020 Surfside Media. All rights reserved</p>
+                    <p class="coppy-right-text">{{__('footer.Copyright © 2020 Surfside Media All rights reserved')}}</p>
                 </div>
                 <div class="coppy-right-item item-right">
                     <div class="wrap-nav horizontal-nav">
                         <ul>
-                            <li class="menu-item"><a href="about-us.html" class="link-term">About us</a>
+                            <li class="menu-item"><a href="about-us.html" class="link-term">{{__('footer.About us')}}</a>
                             </li>
-                            <li class="menu-item"><a href="privacy-policy.html" class="link-term">Privacy
+                            <li class="menu-item"><a href="privacy-policy.html" class="link-term">{{__('footer.Privacy')}}
                                     Policy</a></li>
-                            <li class="menu-item"><a href="terms-conditions.html" class="link-term">Terms &
-                                    Conditions</a></li>
-                            <li class="menu-item"><a href="return-policy.html" class="link-term">Return
-                                    Policy</a></li>
+                            <li class="menu-item"><a href="terms-conditions.html" class="link-term">{{__('footer.Terms & Conditions')}}</a></li>
+                            <li class="menu-item"><a href="return-policy.html" class="link-term">{{__('footer.Return Policy')}}</a></li>
                         </ul>
                     </div>
                 </div>

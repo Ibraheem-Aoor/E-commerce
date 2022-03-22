@@ -20,13 +20,19 @@ class Cart extends Component
 // registering listeners
     public $listeners = ['increaseQty'  ,'reduceQty' , 'destroyCart' , 'deleteItem'];
 
+    public function mount($id = null)
+    {
+        if(Auth::check())
+            C::instance('cart')->store(Auth::id());
+    }
+
 
 
 
 // Deleting item from the card
     public function deleteItem($rowId)
     {
-        C::remove($rowId);
+        C::instance('cart')->remove($rowId);
         session()->flash('success' , 'Item has been removed successfully');
     }
 
@@ -34,7 +40,7 @@ class Cart extends Component
     // Product Quantity manipulating
     public function increaseQty($rowId)
     {
-        $product = C::get($rowId);// returnning product object
+        $product = C::instance('cart')->get($rowId);// returnning product object
         $newQty = $product->qty+1;
         C::update($rowId , $newQty);
     }
@@ -42,11 +48,11 @@ class Cart extends Component
 
     public function reduceQty($rowId)
     {
-        $product = C::get($rowId);
+        $product = C::instance('cart')->get($rowId);
         $newQty = $product->qty - 1;
         if($newQty == 0)
         {
-            C::remove($rowId);
+            $newQty = 1;
             return ;
         }
         C::update($rowId , $newQty);
@@ -57,7 +63,7 @@ class Cart extends Component
 // Clearing the cart
     public  function destroyCart()
     {
-        C::destroy();
+        C::instance('cart')->destroy();
         session()->flash('success' , 'Cart Destroied Successfully');
     }
 
@@ -126,6 +132,7 @@ class Cart extends Component
 
     public function render()
     {
-        return view('livewire.user.auth.cart')->extends('layouts.master')->section('content');
+        $mostViewdProducts = Product::inRandomOrder()->limit(10)->lazyById(5);
+        return view('livewire.user.auth.cart'  , ['mostViewdProducts' => $mostViewdProducts])->extends('layouts.master')->section('content');
     }
 }

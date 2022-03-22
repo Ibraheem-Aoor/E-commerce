@@ -2,40 +2,50 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\Rates;
 use App\Models\Review;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Reviews extends Component
 {
-    public $rate , $reviewText , $product , $numOfReviews;
+    // Attributes
+    public $orderItem , $rating , $email , $comment;
 
-    public function mount($id)
+    public function mount($id = null)
     {
-        $this->product = Product::findOrFail($id);
+        $this->orderItem = OrderItem::findOrFail($id);
+    }
+
+
+
+// Validate and create The Review.
+    public function addReview()
+    {
+        $this->validate($this->rules());
+        Review::create([
+            'rating' => (int)$this->rating,
+            'order_item_id' => $this->orderItem->id,
+            'Author' => Auth::user()->name,
+            'comment' => $this->comment,
+        ]);
+        session()->flash('success' , 'Thanks For Reviewing!');
+    }
+
+    public function rules()
+    {
+        return
+        [
+            'rating' =>'required|numeric',
+            'email' =>'nullable|email',
+            'comment' =>'required|string',
+        ];
     }
 
     public function render()
     {
-        $newRate = new Rate();
-        $newRate->product_id = $this->product->id;
-        $newRate->stars = $this->rate ?? 1;
-        $newRate->save();
-        $allReviews =  Review::where([['product_id' , $this->product->id]])->orderBy('created_at' , 'desc')->limit(7)->get();
-        $this->numOfReviews = $allReviews->count();
-        return view('livewire.reviews' , ['allRev' => $allReviews]);
-    }
-
-// Adding a new review for the current product.
-    public function addReview()
-    {
-        $newRev = new Review();
-        $newRev->content = $this->reviewText;
-        $newRev->product_id = $this->product->id;
-        $newRev->save();
-        $this->reviewText = '';
-        session()->flash('reviewAdded' , 'Thanks for reviewing!');
-
+        return view('livewire.user.auth.reviews')->extends('layouts.master')->section('content');
     }
 }

@@ -12,11 +12,6 @@ class HomePageCategory extends Component
     public $selectedCategories = array();
     public $numOfProducts;
 
-    public function render()
-    {
-        return view('livewire.admin.category.home-page-category' , ['categories' =>Category::all()])->layout('layouts.Admin.base');
-    }
-
     public function setSelectedCategories()
     {
         $this->validate(['numOfProducts'=> 'required|numeric' , 'selectedCategories'=>'required']);
@@ -38,4 +33,10 @@ class HomePageCategory extends Component
         }
     }
     // Make Custom Messages here
+
+
+    public function render()
+    {
+        return view('livewire.admin.category.home-page-category' , ['categories' =>Category::all()])->layout('layouts.Admin.base');
+    }
 }

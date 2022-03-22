@@ -24,7 +24,8 @@ class Wishlist extends Component
     {
         if(!Auth::check())
             return redirect(route('login'));
-        $product  = Cart::instance(Auth::id())->get($rowId);
+        $product = Cart::instance('wishlist')->get($rowId);
+        Cart::instance('wishlist')->remove($rowId);
         Cart::instance('cart')->add($product->id, $product->name, 1, 20)->associate('App\Models\Product');
         session()->flash('success' , 'product moved to cart');
     }

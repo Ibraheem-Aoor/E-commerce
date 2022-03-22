@@ -15,6 +15,8 @@ class CreateOrderItemsTable extends Migration
     {
         Schema::create('order_items', function (Blueprint $table) {
             $table->id();
+            
+
             $table->bigInteger('order_id')
             ->constraint('orders')
             ->unsigned()
@@ -28,6 +30,9 @@ class CreateOrderItemsTable extends Migration
             ->onDelete('cascade');
 
             $table->decimal('price');
+
+            $table->boolean('isRated')
+            ->default(false);
 
             $table->decimal('quantity');
             $table->timestamps();

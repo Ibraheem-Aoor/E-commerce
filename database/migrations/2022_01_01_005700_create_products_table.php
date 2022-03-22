@@ -17,6 +17,9 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('color');
+            $table->string('weight');
+            $table->string('dimensions');
             $table->string('slug')->unique()->nullable();
             $table->string('short_description')->nullable();
             $table->text('description')->nullable();
@@ -29,10 +32,9 @@ class CreateProductsTable extends Migration
             $table->unsignedInteger('quantity')->default(10);
             $table->string('image')->nullable();
             $table->text('images')->nullable();
-            $table->bigInteger('category_id')
-            ->Constraint('categories')
+            $table->bigInteger('sub_category_id')
+            ->Constraint('sub_categories')
             ->unsigned()
-            ->nullable()
             ->onDelete('cascade');
             $table->timestamps();
         });

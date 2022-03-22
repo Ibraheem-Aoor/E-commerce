@@ -16,8 +16,13 @@ class CreateReviewsTable extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->text('content');
-            $table->bigInteger('product_id')->constraint('products');
+            $table->string('Author');
+            $table->text('comment');
+            $table->integer('rating');
+            $table->bigInteger('order_item_id')
+            ->constraint('order_items')
+            ->onDelete('cascade')
+            ->nullabe();
             $table->timestamps();
         });
     }

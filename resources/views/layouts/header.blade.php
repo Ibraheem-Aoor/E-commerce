@@ -16,7 +16,8 @@
                         <ul>
                             <li class="menu-item">
                                 <a title="Hotline: (+123) 456 789" href="#"><span
-                                        class="icon label-before fa fa-mobile"></span>{{__('header.Mobile')}}: (+123) 456 789</a>
+                                        class="icon label-before fa fa-mobile"></span>{{ __('header.Mobile') }}: (+123)
+                                    456 789</a>
                             </li>
                         </ul>
                     </div>
@@ -28,12 +29,16 @@
                                         href="{{ route('login') }}">{{ __('header.Login') }}</a>
                                 </li>
                                 <li class="menu-item"><a title="Login"
-                                        href="{{ route('register') }}">{{__('header.Register')}}</a></li>
+                                        href="{{ route('register') }}">{{ __('header.Register') }}</a></li>
                             @else
                                 <li class="menu-item lang-menu menu-item-has-children parent">
                                     <a title="English" href="#"><span
                                             class="img label-before"></span>{{ Auth::user()->name }}
-                                        @if (Auth::user()->is_admin)(Admin)@endif<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                        @if (Auth::user()->is_admin)
+                                            (Admin)
+                                        @endif
+                                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                    </a>
                                     <ul class="submenu lang">
                                         @if (Auth::user()->is_admin)
                                             <li class="menu-item">
@@ -52,7 +57,10 @@
                                             </li>
                                         @else
                                             <li class="menu-item">
-                                                <a href="{{ route('user.orders') }}">{{__('header.orders')}}</a>
+                                                <a href="{{ route('user.orders') }}">{{ __('header.orders') }}</a>
+                                            </li>
+                                            <li class="menu-item">
+                                                <a href="{{ route('user.profile') }}">{{ __('header.profile') }}</a>
                                             </li>
 
                                             <li class="menu-item">
@@ -72,18 +80,33 @@
                                 </li>
 
                             @endif
-                            <li class="menu-item lang-menu menu-item-has-children parent">
-                                <a title="English" href="#"><span class="img label-before"><img
+                            <li>
+                                @if (app()->getLocale() == 'en')
+                                    <a href="{{ route('lang.change') }}"  style="padding:0 5px;">Ar</a>
+                                @else
+                                    <a href="{{ route('lang.change') }}"  style="padding:0 5px;">En</a>
+                                @endif
+                            </li>
+                            {{-- <li class="menu-item lang-menu menu-item-has-children parent">
+                                <a title="English" href="{{route('lang.change')}}"><span class="img label-before"><img
                                             src="{{ asset('assets/images/lang-en.png') }}"
                                             alt="lang-en"></span>English<i class="fa fa-angle-down"
                                         aria-hidden="true"></i></a>
                                 <ul class="submenu lang">
-                                    <li class="menu-item"><a title="hungary" href="#"><span
+                                    <li class="menu-item"><a title="hungary" href="{{route('lang.change')}}"><span
                                                 class="img label-before"><img
                                                     src="{{ asset('assets/images/lang-hun.png') }}"
                                                     alt="lang-hun"></span>Arabic</a></li>
+                                    <li class="menu-item"><a title="hungary" href="{{route('lang.change')}}"><span
+                                                class="img label-before"><img
+                                                    src="{{ asset('assets/images/lang-hun.png') }}"
+                                                    alt="lang-hun"></span>Indian</a></li>
+                                    <li class="menu-item"><a title="hungary" href="#"><span
+                                                class="img label-before"><img
+                                                    src="{{ asset('assets/images/lang-fra.png') }}"
+                                                    alt="lang-ar"></span>french</a></li>
                                 </ul>
-                            </li>
+                            </li> --}}
                         </ul>
                     </div>
                 </div>
@@ -95,7 +118,7 @@
                     <div class="wrap-logo-top left-section">
                         <a href="/" class="link-to-home">
                             <h2>IbraheemDev</h2>
-                            </a>
+                        </a>
                     </div>
 
                     <div class="wrap-search center-section">
@@ -106,7 +129,7 @@
                                         aria-hidden="true"></i></button>
                                 <div class="wrap-list-cate">
                                     <input type="hidden" name="product-cate" value="0" id="product-cate">
-                                    <a href="#" class="link-control">{{__('header.AllCategory')}}</a>
+                                    <a href="#" class="link-control">{{ __('header.AllCategory') }}</a>
                                     <ul class="list-cate">
                                         <li class="level-0">All Category</li>
                                         <li class="level-1">-Electronics</li>
@@ -138,7 +161,7 @@
                                 <div class="left-info">
                                     <span class="index">{{ Cart::instance('wishlist')->count() }}
                                         item</span>
-                                    <span class="title">{{__('header.Wishlist')}}</span>
+                                    <span class="title">{{ __('header.Wishlist') }}</span>
                                 </div>
                             </a>
                         </div>
@@ -149,7 +172,7 @@
                                     <span class="index">
                                         {{ Cart::instance('cart')->count() }}
                                     </span>
-                                    <span class="title">{{__('header.CART')}}</span>
+                                    <span class="title">{{ __('header.CART') }}</span>
                                 </div>
                             </a>
                         </div>
@@ -191,20 +214,24 @@
                                         aria-hidden="true"></i></a>
                             </li>
                             <li class="menu-item">
-                                <a href="{{ route('about') }}" class="link-term mercado-item-title">{{__('header.About Us')}}</a>
+                                <a href="{{ route('about') }}"
+                                    class="link-term mercado-item-title">{{ __('header.About Us') }}</a>
                             </li>
                             <li class="menu-item">
-                                <a href="{{ route('shop') }}" class="link-term mercado-item-title">{{__('header.Shop')}}</a>
+                                <a href="{{ route('shop') }}"
+                                    class="link-term mercado-item-title">{{ __('header.Shop') }}</a>
                             </li>
                             <li class="menu-item">
-                                <a href="{{ route('cart') }}" class="link-term mercado-item-title">{{__('header.Cart')}}</a>
+                                <a href="{{ route('cart') }}"
+                                    class="link-term mercado-item-title">{{ __('header.Cart') }}</a>
                             </li>
                             <li class="menu-item">
-                                <a href="{{ route('checkout') }}" class="link-term mercado-item-title">{{__('header.Checkout')}}</a>
+                                <a href="{{ route('checkout') }}"
+                                    class="link-term mercado-item-title">{{ __('header.Checkout') }}</a>
                             </li>
                             <li class="menu-item">
                                 <a href="{{ route('contact') }}" class="link-term mercado-item-title">
-                                    {{__('header.Contact Us')}}
+                                    {{ __('header.Contact Us') }}
                                 </a>
                             </li>
                         </ul>

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ProductFactory extends Factory
@@ -11,6 +12,7 @@ class ProductFactory extends Factory
      *
      * @return array
      */
+    protected $model = Product::class;
     public function definition()
     {
         return [
@@ -21,11 +23,12 @@ class ProductFactory extends Factory
             'sale_price' => $this->faker->numberBetween(100,300),
             'SKU' => $this->faker->numberBetween(100,300),
             'quantity' => $this->faker->numberBetween(50,300),
-            // 'rate' => $this->faker->numberBetween(1,5),
             'image' => 'digital_'.$this->faker->numberBetween(1,22).'.jpg',
-            'category_id' => $this->faker->numberBetween(1,800),
-            // 'onsale' => $this->faker->boolean(),
-
+            'weight' => $this->faker->randomNumber(),
+            'color' => $this->faker->colorName(),
+            'dimensions' => $this->faker->randomNumber(),
+            'sub_category_id' => $this->faker->numberBetween(1,500),
+            'stock_status' => 'instock',
         ];
     }
 }

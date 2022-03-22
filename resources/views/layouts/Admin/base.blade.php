@@ -63,7 +63,7 @@
             })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
             ga('create', 'UA-46172202-22', 'auto', {
                 allowLinker: true
-            });
+            }); 
             ga('set', 'anonymizeIp', true);
             ga('require', 'GTM-K9BGS8K');
             ga('require', 'displayfeatures');
@@ -102,17 +102,24 @@
     <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="{{ asset('assets/css/soft-ui-dashboard.css') }}" rel="stylesheet" />
-    <link id="pagestyle" href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" />
-    <link id="pagestyle" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.2/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <link id="pagestyle"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.2/css/bootstrap-datetimepicker.min.css"
+        rel="stylesheet" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.3/css/selectize.bootstrap4.css">
     <!-- Alpine -->
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
+    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+    @stack('css')
     @livewireStyles
 
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
     @include('layouts.Admin.navbars.auth.sidebar')
-    @include('layouts.Admin.navbars.auth.nav')
+    {{-- <div> --}}
+        @include('layouts.Admin.navbars.auth.nav')
+    {{-- </div> --}}
     @include('components.plugins.fixed-plugin')
     {{ $slot }}
     <main>
@@ -127,10 +134,15 @@
 
 
     @livewireScripts
+    <script>
+        const userId = "{{ Auth::id() }}";
+    </script>
+    <script src="{{ asset('js/app.js') }}"></script>
     <!--   Core JS Files   -->
     <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
     <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.3/js/selectize.min.js"></script>
     <script>
         var win = navigator.platform.indexOf('Win') > -1;
         if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -141,11 +153,12 @@
         }
     </script>
     <!-- Github buttons -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script async src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{ asset('assets/js/soft-ui-dashboard.min.js?v=1.0.2') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.2/js/bootstrap-datetimepicker.min.js"></script>
-    {{-- <script src="{{ asset('assets/js/select2.min.js') }}"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.2/js/bootstrap-datetimepicker.min.js">
+    </script>
+
     @stack('scripts')
 
 </body>

@@ -12,6 +12,15 @@ return
     'Cart' => 'العربة',
     'Checkout' => 'الدفع',
     'Contact Us' => 'تواصل معنا' ,
-
+    'profile' => 'الملف الشخصي',
+    'Subtotal' => 'الاجمالي قبل الضريبة',
+    'Subtotal After Discount' => 'الاجمالي بعد الخصم' ,
+    'Tax After Discount' => 'الضريبة بعد الخصم',
+    'Shipping' => 'الشحن' ,
+    'Free Shipping' => 'شحن مجاني',
+    'Total After Discount' => 'الاجمالي بعد الخصم',
+    'Tax' =>'الضريبة',
+    'Total' =>'االاجمالي',
 ];
+
 
